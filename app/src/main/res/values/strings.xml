@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ShareLoc</string>
+    <string name="bn_map">Карта</string>
+    <string name="bn_location">Инф. о геолокации</string>
+
+    <!-- Location screen -->
+    <string name="btn_location_get">Получить мою геолокацию</string>
+    <string name="tv_location_coords">Координаты:</string>
+    <string name="tv_location_latitude">Широта:</string>
+    <string name="tv_location_longtitude">Долгота:</string>
+    <string name="tv_location_send">Отправить:</string>
+    <string name="tv_location_address">Адрес:</string>
+    <string name="tv_location_message">Сообщение:</string>
+    <string name="tv_location_google">Google Maps:</string>
+    <string name="tv_location_yandex">Яндекс.Карты:</string>
+
+    <!-- Settings screen -->
+    <string name="tv_settings_text">Текст для отправки</string>
+    <string name="tv_settings_preferenses">Настройки точности:</string>
+    <string name="et_settings_hint">Введите текст:</string>
+    <string name="btn_settings_ok">OK</string>
+    <string name="tv_settings_internet">Интернет:</string>
+    <string name="tv_settings_wifi">Wi-Fi:</string>
+    <string name="tv_settings_gps">GPS:</string>
+    
+</resources>

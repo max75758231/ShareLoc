@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+    <Button
+        android:id="@+id/btn_location_getLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_location_get"/>
+
+    <TextView
+        android:id="@+id/tv_location_geolocation"
+        android:layout_below="@id/btn_location_getLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_location_coords"
+        style="@style/BlackBoldText"/>
+    
+    <LinearLayout
+        android:id="@+id/linearLayout_latitude"
+        android:layout_below="@id/tv_location_geolocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_latitude"
+            android:layout_width="@dimen/location_textview_110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_location_latitude"
+            style="@style/BlackText"/>
+        
+        <TextView
+            android:id="@+id/tv_location_latitude_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"/>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_longtitude"
+        android:layout_below="@id/linearLayout_latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_longtitude"
+            android:layout_width="@dimen/location_textview_110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_location_longtitude"
+            style="@style/BlackText"/>
+
+        <TextView
+            android:id="@+id/tv_location_longtitude_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_message_send"
+        android:layout_below="@id/linearLayout_longtitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/tv_location_send"
+            style="@style/BlackBoldText"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/iv_location_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share_black_24dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_message"
+        android:layout_below="@id/linearLayout_message_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_message"
+            android:layout_width="@dimen/location_textview_110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_location_message"
+            style="@style/BlackText"/>
+
+        <TextView
+            android:id="@+id/tv_location_message_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_address"
+        android:layout_below="@id/linearLayout_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_address"
+            android:layout_width="@dimen/location_textview_110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_location_address"
+            style="@style/BlackText"/>
+
+        <TextView
+            android:id="@+id/tv_location_address_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_google"
+        android:layout_below="@id/linearLayout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_google"
+            android:layout_width="@dimen/location_textview_110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_location_google"
+            style="@style/BlackText"/>
+
+        <TextView
+            android:id="@+id/tv_location_google_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            style="@style/BlueLinkColor"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_yandex"
+        android:layout_below="@id/linearLayout_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_location_yandex"
+            android:layout_width="@dimen/location_textview_110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_location_yandex"
+            style="@style/BlackText"/>
+
+        <TextView
+            android:id="@+id/tv_location_yandex_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            style="@style/BlueLinkColor"/>
+    </LinearLayout>
+</RelativeLayout>
