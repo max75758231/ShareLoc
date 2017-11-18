@@ -32,7 +32,6 @@ ext {
     gmsVersion = "11.6.0"
     constraintVersion = "1.0.2"
     moxyVersion = "1.5.3"
-    retrofitVersion = "2.1.0"
     butterknifeVersion = "8.6.0"
 }
 
@@ -51,10 +50,6 @@ dependencies {
     implementation "com.arello-mobile:moxy:$moxyVersion"
     implementation "com.arello-mobile:moxy-app-compat:$moxyVersion"
     annotationProcessor "com.arello-mobile:moxy-compiler:$moxyVersion"
-
-    implementation 'com.google.code.gson:gson:2.8.0'
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"

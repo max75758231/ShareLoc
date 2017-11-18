@@ -51,20 +51,10 @@ public class LocationPresenter extends MvpPresenter<LocationView> {
             addresses = geocoder.getFromLocation(Double.parseDouble(latitude),
                     Double.parseDouble(longtitude), 1);
 
-            String address = addresses.get(0).getAddressLine(0);
-            String area = addresses.get(0).getLocality();
-            String city = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postcode = addresses.get(0).getPostalCode();
-
-            fullAddr = address + area + city + country + postcode;
-
-            Log.d("myLog", fullAddr);
+            fullAddr = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {
-//            e.printStackTrace();
             Log.d("myLog", String.valueOf(e));
         }
-
         return fullAddr;
     }
 }
