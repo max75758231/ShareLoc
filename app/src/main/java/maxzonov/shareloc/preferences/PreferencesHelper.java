@@ -3,10 +3,6 @@ package maxzonov.shareloc.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Maxim Zonov on 09.11.2017.
- */
-
 public class PreferencesHelper {
 
     private SharedPreferences preferences;

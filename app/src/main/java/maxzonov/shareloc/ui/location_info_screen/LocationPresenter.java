@@ -14,33 +14,31 @@ import java.util.Locale;
 
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
-/**
- * Created by Maxim Zonov on 02.11.2017.
- */
-
 @InjectViewState
 public class LocationPresenter extends MvpPresenter<LocationView> {
 
-    private static final String LATITUDE = "latitude";
-    private static final String LONGTITUDE = "longtitude";
+    private Context context;
 
     private String latitude = "58.6376";
-    private String longtitude = "49.617219";
+    private String longitude = "49.617219";
 
-    Geocoder geocoder;
-    List<Address> addresses;
+    private List<Address> addresses;
 
-    public void getLocation(Context context) {
-        PreferencesHelper preferencesHelperLatitude = new PreferencesHelper("latitude", context);
-        PreferencesHelper preferencesHelperLongtitude = new PreferencesHelper("longtitude", context);
+    private Geocoder geocoder;
 
-        preferencesHelperLatitude.writeToPrefs(LATITUDE, latitude);
-        preferencesHelperLongtitude.writeToPrefs(LONGTITUDE, longtitude);
 
-        getViewState().showInfo(latitude, longtitude);
-        getViewState().showLinks(latitude, longtitude);
+    public void getLocationClicked(Context context) {
+        getLocation(context);
+    }
 
-        getViewState().showAddress(getAddress(context));
+    public void locationIsReady(String latitude, String longitude, String address) {
+        getViewState().showInfo(latitude, longitude, address);
+    }
+
+    private void getLocation(Context context) {
+
+        String address = getAddress(context);
+        getViewState().showInfo(latitude, longitude, address);
     }
 
     private String getAddress(Context context) {
@@ -49,7 +47,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> {
         try {
 
             addresses = geocoder.getFromLocation(Double.parseDouble(latitude),
-                    Double.parseDouble(longtitude), 1);
+                    Double.parseDouble(longitude), 1);
 
             fullAddr = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {

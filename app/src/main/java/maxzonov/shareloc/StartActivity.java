@@ -17,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
 
-    boolean isMapFragmentVisible = false;
+    private boolean isMapFragmentVisible = false;
 
     private final Fragment fragmentMap = new MapFragment();
     private final Fragment fragmentLocation = new LocationFragment();
@@ -50,8 +50,8 @@ public class StartActivity extends AppCompatActivity {
                     replaceFragment(fragmentMap);
                     isMapFragmentVisible = true;
                 }
-
                 return true;
+
             case R.id.bottom_navigation_location:
 
                 if (!isMapFragmentVisible) {
@@ -80,7 +80,6 @@ public class StartActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -95,5 +94,4 @@ public class StartActivity extends AppCompatActivity {
                 .replace(R.id.frame_layout, fragment)
                 .commit();
     }
-
 }

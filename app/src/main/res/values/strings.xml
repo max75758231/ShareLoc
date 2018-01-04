@@ -5,20 +5,27 @@
 
     <!-- Location screen -->
     <string name="btn_location_get">Получить мою геолокацию</string>
+
     <string name="tv_location_coords">Координаты:</string>
     <string name="tv_location_latitude">Широта:</string>
-    <string name="tv_location_longtitude">Долгота:</string>
+    <string name="tv_location_longitude">Долгота:</string>
     <string name="tv_location_send">Отправить:</string>
     <string name="tv_location_address">Адрес:</string>
     <string name="tv_location_message">Сообщение:</string>
     <string name="tv_location_google">Google Maps:</string>
     <string name="tv_location_yandex">Яндекс.Карты:</string>
 
+    <string name="share_title">Share via</string>
+
+    <string name="google_maps_link">maps.google.com/maps?q=loc:%1$s,%2$s</string>
+    <string name="yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
+
     <!-- Settings screen -->
     <string name="tv_settings_text">Текст для отправки</string>
     <string name="tv_settings_preferenses">Настройки точности:</string>
     <string name="et_settings_hint">Введите текст:</string>
     <string name="btn_settings_ok">OK</string>
+    <string name="settings_services">Настройки точности:</string>
     <string name="tv_settings_internet">Интернет:</string>
     <string name="tv_settings_wifi">Wi-Fi:</string>
     <string name="tv_settings_gps">GPS:</string>

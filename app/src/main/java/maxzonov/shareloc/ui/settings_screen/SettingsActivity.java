@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,17 +16,12 @@ import butterknife.OnClick;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
-/**
- * Created by Maxim Zonov on 05.11.2017.
- */
-
 public class SettingsActivity extends MvpAppCompatActivity implements SettingsView,
         CompoundButton.OnCheckedChangeListener {
 
-    @InjectPresenter SettingsPresenter settingsPresenter;
-    PreferencesHelper preferencesHelper;
+    private PreferencesHelper preferencesHelper;
 
-    LinearLayout linearLayout;
+    private LinearLayout linearLayout;
 
     @BindView(R.id.et_settings_message) EditText editTextMessage;
     @BindView(R.id.switch_internet) SwitchCompat switchInternet;
@@ -52,7 +46,7 @@ public class SettingsActivity extends MvpAppCompatActivity implements SettingsVi
     }
 
     @OnClick(R.id.btn_settings_ok)
-    public void btnClick() {
+    void onOkButtonClick() {
         preferencesHelper.writeToPrefs("message", editTextMessage.getText().toString());
     }
 

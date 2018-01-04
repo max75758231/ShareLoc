@@ -5,10 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpAppCompatFragment;
-import com.arellomobile.mvp.MvpView;
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -20,34 +17,31 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
-import maxzonov.shareloc.ui.location_info_screen.LocationModel;
-
-/**
- * Created by Maxim Zonov on 02.11.2017.
- */
 
 public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback {
 
-    GoogleMap mGoogleMap;
-    MapView mapView;
-    View mView;
+    private GoogleMap googleMap;
+    private MapView mapView;
+    private View mView;
 
-    String latitude;
-    String longtitude;
+    private String latitude;
+    private String longitude;
 
-    public static final String LATITUDE = "latitude";
-    public static final String LONGTITUDE = "longtitude";
+    public static final String PREFERENCES_LATITUDE_TAG = "latitude";
+    public static final String PREFERENCES_LONGITUDE_TAG = "longitude";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        PreferencesHelper preferencesHelperLatitude = new PreferencesHelper(LATITUDE, getActivity());
-        PreferencesHelper preferencesHelperLongtitude = new PreferencesHelper(LONGTITUDE, getActivity());
+        PreferencesHelper preferencesHelperLatitude =
+                new PreferencesHelper(PREFERENCES_LATITUDE_TAG, getActivity());
+        PreferencesHelper preferencesHelperLongitude =
+                new PreferencesHelper(PREFERENCES_LONGITUDE_TAG, getActivity());
 
-        latitude = preferencesHelperLatitude.readFromPrefs(LATITUDE, getActivity());
-        longtitude = preferencesHelperLongtitude.readFromPrefs(LONGTITUDE, getActivity());
+        latitude = preferencesHelperLatitude.readFromPrefs(PREFERENCES_LATITUDE_TAG, getActivity());
+        longitude = preferencesHelperLongitude.readFromPrefs(PREFERENCES_LONGITUDE_TAG, getActivity());
     }
 
     @Override
@@ -74,13 +68,13 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
 
-        mGoogleMap = googleMap;
+        this.googleMap = googleMap;
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitude),
+                Double.parseDouble(longitude))).title("VyatSU"));
 
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longtitude))).title("VyatSU"));
-
-        CameraPosition cameraPosition = CameraPosition.builder().target(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longtitude)))
+        CameraPosition cameraPosition = CameraPosition.builder().target(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
                 .zoom(15).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 

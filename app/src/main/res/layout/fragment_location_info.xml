@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/activity_vertical_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -45,7 +46,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout_longtitude"
+        android:id="@+id/linearLayout_longitude"
         android:layout_below="@id/linearLayout_latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,14 +54,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_location_longtitude"
+            android:id="@+id/tv_location_longitude"
             android:layout_width="@dimen/location_textview_110dp"
             android:layout_height="wrap_content"
-            android:text="@string/tv_location_longtitude"
+            android:text="@string/tv_location_longitude"
             style="@style/BlackText"/>
 
         <TextView
-            android:id="@+id/tv_location_longtitude_result"
+            android:id="@+id/tv_location_longitude_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/BlackText"/>
@@ -69,7 +70,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout_message_send"
-        android:layout_below="@id/linearLayout_longtitude"
+        android:layout_below="@id/linearLayout_longitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
