@@ -12,12 +12,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import maxzonov.shareloc.preferences.PreferencesHelper;
-
 @InjectViewState
 public class LocationPresenter extends MvpPresenter<LocationView> {
-
-    private Context context;
 
     private String latitude = "58.6376";
     private String longitude = "49.617219";
@@ -27,12 +23,8 @@ public class LocationPresenter extends MvpPresenter<LocationView> {
     private Geocoder geocoder;
 
 
-    public void getLocationClicked(Context context) {
+    void getLocationClicked(Context context) {
         getLocation(context);
-    }
-
-    public void locationIsReady(String latitude, String longitude, String address) {
-        getViewState().showInfo(latitude, longitude, address);
     }
 
     private void getLocation(Context context) {

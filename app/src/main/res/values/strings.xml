@@ -20,8 +20,10 @@
     <string name="google_maps_link">maps.google.com/maps?q=loc:%1$s,%2$s</string>
     <string name="yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
 
-    <!-- Settings screen -->
-    <string name="tv_settings_text">Текст для отправки</string>
+    <!-- Settings -->
+    <string name="settings_message_key">message</string>
+    <string name="tv_settings_message">Текст сообщения</string>
+
     <string name="tv_settings_preferenses">Настройки точности:</string>
     <string name="et_settings_hint">Введите текст:</string>
     <string name="btn_settings_ok">OK</string>
@@ -29,5 +31,9 @@
     <string name="tv_settings_internet">Интернет:</string>
     <string name="tv_settings_wifi">Wi-Fi:</string>
     <string name="tv_settings_gps">GPS:</string>
+
+    <!-- SharedPreferences -->
+    <string name="prefs_message_key">message</string>
+    <string name="prefs_message_default">Отправляю тебе свою геолокацию.</string>
     
 </resources>

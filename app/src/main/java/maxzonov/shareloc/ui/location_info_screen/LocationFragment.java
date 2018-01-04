@@ -1,7 +1,9 @@
 package maxzonov.shareloc.ui.location_info_screen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +20,8 @@ import butterknife.OnClick;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
-public class LocationFragment extends MvpAppCompatFragment implements LocationView {
+public class LocationFragment extends MvpAppCompatFragment implements LocationView,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     @InjectPresenter LocationPresenter locationPresenter;
 
@@ -47,10 +50,11 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup containter,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_location_info, containter, false);
+        View view = inflater.inflate(R.layout.fragment_location_info, container, false);
         ButterKnife.bind(this, view);
+        setupSharedPreferences();
         Log.d(TAG, "onCreateView: ");
 
         preferencesHelper = new PreferencesHelper(PREFERENCES_MESSAGE_TAG, getActivity());
@@ -127,6 +131,25 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     public void onDestroy() {
         super.onDestroy();
 
+        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .unregisterOnSharedPreferenceChangeListener(this);
+
         Log.d(TAG, "onDestroy: ");
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        textViewMessage.setText(preferences.getString(getString(R.string.prefs_message_key),
+                getResources().getString(R.string.prefs_message_default)));
+
+        preferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.prefs_message_key))) {
+            textViewMessage.setText(sharedPreferences.getString(key,
+                    getResources().getString(R.string.prefs_message_default)));
+        }
     }
 }

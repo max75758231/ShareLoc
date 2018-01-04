@@ -1,87 +1,28 @@
 package maxzonov.shareloc.ui.settings_screen;
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v7.widget.SwitchCompat;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import maxzonov.shareloc.R;
-import maxzonov.shareloc.preferences.PreferencesHelper;
 
-public class SettingsActivity extends MvpAppCompatActivity implements SettingsView,
-        CompoundButton.OnCheckedChangeListener {
-
-    private PreferencesHelper preferencesHelper;
-
-    private LinearLayout linearLayout;
-
-    @BindView(R.id.et_settings_message) EditText editTextMessage;
-    @BindView(R.id.switch_internet) SwitchCompat switchInternet;
-    @BindView(R.id.switch_wifi) SwitchCompat switchWifi;
-    @BindView(R.id.switch_gps) SwitchCompat switchGps;
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        ButterKnife.bind(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        preferencesHelper = new PreferencesHelper("message", this);
-
-        linearLayout = findViewById(R.id.layout_settings);
-        switchInternet.setOnCheckedChangeListener(this);
-        switchWifi.setOnCheckedChangeListener(this);
-        switchGps.setOnCheckedChangeListener(this);
-    }
-
-    @OnClick(R.id.btn_settings_ok)
-    void onOkButtonClick() {
-        preferencesHelper.writeToPrefs("message", editTextMessage.getText().toString());
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-        switch (compoundButton.getId()) {
-            case R.id.switch_internet:
-                if (isChecked) {
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.setClassName("com.android.phone", "com.android.phone.NetworkSetting");
-                    startActivity(intent);
-                } else {
-
-                }
-                break;
-            case R.id.switch_wifi:
-                if (isChecked) {
-                    startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                } else {
-
-                }
-                break;
-            case R.id.switch_gps:
-                if (isChecked) {
-                    startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                } else {
-
-                }
-                break;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }

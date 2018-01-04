@@ -24,24 +24,13 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     private MapView mapView;
     private View mView;
 
-    private String latitude;
-    private String longitude;
-
-    public static final String PREFERENCES_LATITUDE_TAG = "latitude";
-    public static final String PREFERENCES_LONGITUDE_TAG = "longitude";
+    private String latitude = "58.6376";
+    private String longitude = "49.617219";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
-        PreferencesHelper preferencesHelperLatitude =
-                new PreferencesHelper(PREFERENCES_LATITUDE_TAG, getActivity());
-        PreferencesHelper preferencesHelperLongitude =
-                new PreferencesHelper(PREFERENCES_LONGITUDE_TAG, getActivity());
-
-        latitude = preferencesHelperLatitude.readFromPrefs(PREFERENCES_LATITUDE_TAG, getActivity());
-        longitude = preferencesHelperLongitude.readFromPrefs(PREFERENCES_LONGITUDE_TAG, getActivity());
     }
 
     @Override
@@ -77,6 +66,5 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         CameraPosition cameraPosition = CameraPosition.builder().target(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
                 .zoom(15).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
     }
 }
