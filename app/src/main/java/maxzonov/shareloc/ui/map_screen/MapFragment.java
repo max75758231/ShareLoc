@@ -16,7 +16,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import maxzonov.shareloc.R;
-import maxzonov.shareloc.preferences.PreferencesHelper;
 
 public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback {
 

@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import maxzonov.shareloc.di.DaggerScreensComponent;
+import maxzonov.shareloc.di.LocationFragmentModule;
+import maxzonov.shareloc.di.MapFragmentModule;
+import maxzonov.shareloc.di.ScreensComponent;
 import maxzonov.shareloc.ui.settings_screen.SettingsActivity;
 import maxzonov.shareloc.ui.location_info_screen.LocationFragment;
 import maxzonov.shareloc.ui.map_screen.MapFragment;
@@ -16,16 +20,20 @@ import maxzonov.shareloc.ui.map_screen.MapFragment;
 public class StartActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
+    private Fragment fragmentLocation, fragmentMap;
 
     private boolean isMapFragmentVisible = false;
-
-    private final Fragment fragmentMap = new MapFragment();
-    private final Fragment fragmentLocation = new LocationFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ScreensComponent daggerScreensComponent = DaggerScreensComponent.builder()
+                .build();
+
+        fragmentLocation = daggerScreensComponent.getLocationFragment();
+        fragmentMap = daggerScreensComponent.getMapFragment();
 
         fragmentManager = getSupportFragmentManager();
 

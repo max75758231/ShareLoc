@@ -33,6 +33,7 @@ ext {
     gmsVersion = "11.8.0"
     moxyVersion = "1.5.3"
     butterknifeVersion = "8.6.0"
+    daggerVersion = "2.13"
 }
 
 dependencies {
@@ -56,4 +57,7 @@ dependencies {
 
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 }

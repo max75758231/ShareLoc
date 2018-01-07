@@ -26,7 +26,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @InjectPresenter LocationPresenter locationPresenter;
 
     private static final String PREFERENCES_MESSAGE_TAG = "message";
-    private static final String TAG = "myLog";
 
     private PreferencesHelper preferencesHelper;
 
@@ -46,7 +45,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        Log.d(TAG, "onCreate: ");
     }
 
     @Override
@@ -55,7 +53,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         View view = inflater.inflate(R.layout.fragment_location_info, container, false);
         ButterKnife.bind(this, view);
         setupSharedPreferences();
-        Log.d(TAG, "onCreateView: ");
 
         preferencesHelper = new PreferencesHelper(PREFERENCES_MESSAGE_TAG, getActivity());
 
@@ -100,41 +97,11 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-
-        Log.d(TAG, "onStart: ");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Log.d(TAG, "onResume: ");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        Log.d(TAG, "onStop: ");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        Log.d(TAG, "onDestroyView: ");
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
 
         PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .unregisterOnSharedPreferenceChangeListener(this);
-
-        Log.d(TAG, "onDestroy: ");
     }
 
     private void setupSharedPreferences() {

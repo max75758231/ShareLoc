@@ -1,8 +1,12 @@
 package maxzonov.shareloc.ui.location_info_screen;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
@@ -11,6 +15,8 @@ import com.arellomobile.mvp.MvpPresenter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import maxzonov.shareloc.R;
 
 @InjectViewState
 public class LocationPresenter extends MvpPresenter<LocationView> {
@@ -22,18 +28,32 @@ public class LocationPresenter extends MvpPresenter<LocationView> {
 
     private Geocoder geocoder;
 
+    private Context context;
+
 
     void getLocationClicked(Context context) {
-        getLocation(context);
+        this.context = context;
+        getLocation();
     }
 
-    private void getLocation(Context context) {
-
-        String address = getAddress(context);
+    private void getLocation() {
+        showNotification();
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+                NotificationManager manager =
+                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                manager.cancelAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+        String address = getAddress();
         getViewState().showInfo(latitude, longitude, address);
     }
 
-    private String getAddress(Context context) {
+    private String getAddress() {
         geocoder = new Geocoder(context, Locale.getDefault());
         String fullAddr = "default";
         try {
@@ -46,5 +66,19 @@ public class LocationPresenter extends MvpPresenter<LocationView> {
             Log.d("myLog", String.valueOf(e));
         }
         return fullAddr;
+    }
+
+    private void showNotification() {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("ShareLoc")
+                        .setContentText("Поиск спутников GPS")
+                        .setOngoing(true);
+        Notification notification = builder.build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notification);
     }
 }
