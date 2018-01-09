@@ -10,12 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import maxzonov.shareloc.di.DaggerScreensComponent;
-import maxzonov.shareloc.di.LocationFragmentModule;
-import maxzonov.shareloc.di.MapFragmentModule;
 import maxzonov.shareloc.di.ScreensComponent;
 import maxzonov.shareloc.ui.settings_screen.SettingsActivity;
 import maxzonov.shareloc.ui.location_info_screen.LocationFragment;
-import maxzonov.shareloc.ui.map_screen.MapFragment;
 
 public class StartActivity extends AppCompatActivity {
 

@@ -12,7 +12,7 @@
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="@dimen/fragment_margin_for_bottom_nav"
         android:animateLayoutChanges="true"/>
 
     <android.support.design.widget.BottomNavigationView

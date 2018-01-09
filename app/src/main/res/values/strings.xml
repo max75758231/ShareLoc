@@ -2,6 +2,7 @@
     <string name="app_name">ShareLoc</string>
     <string name="bn_map">Карта</string>
     <string name="bn_location">Инф. о геолокации</string>
+    <string name="settings_title">Settings</string>
 
     <!-- Location screen -->
     <string name="btn_location_get">Получить мою геолокацию</string>
@@ -16,6 +17,7 @@
     <string name="tv_location_yandex">Яндекс.Карты:</string>
 
     <string name="share_title">Share via</string>
+    <string name="iv_share_descr">Share geolocation</string>
 
     <string name="google_maps_link">maps.google.com/maps?q=loc:%1$s,%2$s</string>
     <string name="yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
@@ -24,7 +26,7 @@
     <string name="settings_message_key">message</string>
     <string name="tv_settings_message">Текст сообщения</string>
 
-    <string name="tv_settings_preferenses">Настройки точности:</string>
+    <string name="tv_settings_preferences">Настройки точности:</string>
     <string name="et_settings_hint">Введите текст:</string>
     <string name="btn_settings_ok">OK</string>
     <string name="settings_services">Настройки точности:</string>

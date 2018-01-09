@@ -33,10 +33,10 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup containter,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mView = inflater.inflate(R.layout.fragment_map, containter, false);
+        mView = inflater.inflate(R.layout.fragment_map, container, false);
         return mView;
     }
 

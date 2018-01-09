@@ -3,5 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">24dp</dimen>
 
-    <dimen name="location_textview_110dp">110dp</dimen>
+    <dimen name="textview_110dp_length">110dp</dimen>
+    <dimen name="fragment_margin_for_bottom_nav">56dp</dimen>
 </resources>

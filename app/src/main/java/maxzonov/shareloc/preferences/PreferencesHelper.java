@@ -14,12 +14,6 @@ public class PreferencesHelper {
          preferences = context.getSharedPreferences(key, Context.MODE_PRIVATE);
     }
 
-    public void writeToPrefs(String key, String value) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(key, value);
-        editor.apply();
-    }
-
     public String readFromPrefs(String key, Context context) {
         Resources res = context.getResources();
         preferences = context.getSharedPreferences(key, Context.MODE_PRIVATE);

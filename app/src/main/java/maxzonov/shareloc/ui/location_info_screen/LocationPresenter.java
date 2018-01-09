@@ -3,7 +3,6 @@ package maxzonov.shareloc.ui.location_info_screen;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.NotificationCompat;
@@ -55,17 +54,17 @@ public class LocationPresenter extends MvpPresenter<LocationView> {
 
     private String getAddress() {
         geocoder = new Geocoder(context, Locale.getDefault());
-        String fullAddr = "default";
+        String fullAddress = "default";
         try {
 
             addresses = geocoder.getFromLocation(Double.parseDouble(latitude),
                     Double.parseDouble(longitude), 1);
 
-            fullAddr = addresses.get(0).getAddressLine(0);
+            fullAddress = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {
             Log.d("myLog", String.valueOf(e));
         }
-        return fullAddr;
+        return fullAddress;
     }
 
     private void showNotification() {
