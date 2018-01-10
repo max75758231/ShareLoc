@@ -1,13 +1,19 @@
 package maxzonov.shareloc.ui.location_info_screen;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -25,6 +31,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @InjectPresenter LocationPresenter locationPresenter;
 
     private static final String PREFERENCES_MESSAGE_TAG = "message";
+    private static final int REQUEST_LOCATION_PERMISSION = 1;
 
     private PreferencesHelper preferencesHelper;
 
@@ -62,7 +69,32 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @OnClick(R.id.btn_location_getLocation)
     void onGetLocationButtonClick() {
-        locationPresenter.getLocationClicked(getActivity());
+        getLocation();
+    }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSION);
+        } else {
+            locationPresenter.getLocationClicked(getActivity());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_LOCATION_PERMISSION:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getLocation();
+                } else {
+                    Log.d("myLog", getString(R.string.permission_denied));
+                }
+                break;
+        }
     }
 
     @OnClick(R.id.iv_location_share)
@@ -71,7 +103,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                 + textViewMessage.getText() + "\n"
                 + stringGoogle + " " + textViewGoogleLink.getText() + "\n"
                 + stringYandex + " " + textViewYandexLink.getText();
-
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
