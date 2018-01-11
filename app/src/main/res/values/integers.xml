@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="NOTIFICATION_FIND_LOCATION_ID">1</integer>
-    <integer name="REQUEST_LOCATION_PERMISSION_ID">1</integer>
-</resources>
