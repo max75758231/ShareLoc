@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -32,9 +31,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @InjectPresenter LocationPresenter locationPresenter;
 
-    private Resources res = getResources();
-
     private PreferencesHelper preferencesHelper;
+    private static final int REQUEST_LOCATION_PERMISSION_ID = 1;
 
     @BindView(R.id.tv_location_latitude_result) TextView textViewLatitude;
     @BindView(R.id.tv_location_longitude_result) TextView textViewLongitude;
@@ -83,7 +81,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                 PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    res.getInteger(R.integer.REQUEST_LOCATION_PERMISSION_ID));
+                    REQUEST_LOCATION_PERMISSION_ID);
         } else {
             locationPresenter.getLocationClicked(getActivity(), fusedLocationClient);
         }

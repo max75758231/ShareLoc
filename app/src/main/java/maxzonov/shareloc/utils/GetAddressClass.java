@@ -2,7 +2,6 @@ package maxzonov.shareloc.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,7 +20,6 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
     @SuppressLint("StaticFieldLeak")
     private Context context;
     private OnGetAddressCompleted listener;
-    private Resources res = context.getResources();
 
     public GetAddressClass(Context context, OnGetAddressCompleted listener) {
         this.context = context;
@@ -44,7 +42,7 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
 
             if (addresses == null || addresses.size() == 0) {
                 if (resultMessage.isEmpty()) {
-                    resultMessage = res.getString(R.string.no_address_found);
+                    resultMessage = String.valueOf(R.string.no_address_found);
                 }
             } else {
                 Address address = addresses.get(0);
@@ -55,10 +53,10 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
                 resultMessage = TextUtils.join("\n", addressParts);
             }
         } catch (IOException ioException) {
-            resultMessage = res.getString(R.string.no_address_found);
+            resultMessage = String.valueOf(R.string.no_address_found);
             ioException.printStackTrace();
         } catch (IllegalArgumentException illegalArgException) {
-            resultMessage = res.getString(R.string.no_address_found);
+            resultMessage = String.valueOf(R.string.no_address_found);
             illegalArgException.printStackTrace();
         }
         return resultMessage;

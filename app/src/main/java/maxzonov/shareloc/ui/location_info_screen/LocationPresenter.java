@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.res.Resources;
 import android.location.Location;
 import android.support.v4.app.NotificationCompat;
 
@@ -25,17 +24,17 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
     private Location lastLocation;
 
     private Context context;
-    private Resources res = context.getResources();
+    private static final int NOTIFICATION_FIND_LOCATION_ID = 1;
 
     private FusedLocationProviderClient fusedLocationClient;
 
-    private NotificationManager notificationManager =
-            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    private NotificationManager notificationManager;
 
-    //Button click "Get Location" handling
+    //Button "
     void getLocationClicked(Context context, FusedLocationProviderClient fusedLocationClient) {
         this.context = context;
         this.fusedLocationClient = fusedLocationClient;
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         showNotification();
         getLocation();
     }
@@ -51,7 +50,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
                 longitude = String.valueOf(lastLocation.getLongitude());
                 new GetAddressClass(context, this).execute(lastLocation);
             } else {
-                String error = res.getString(R.string.location_error);
+                String error = String.valueOf(R.string.location_error);
                 getViewState().showInfo(error, error, error);
             }
         });
@@ -67,16 +66,16 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle(res.getString(R.string.app_name))
-                        .setContentText(res.getString(R.string.gps_searching))
+                        .setContentTitle(String.valueOf(R.string.app_name))
+                        .setContentText(String.valueOf(R.string.gps_searching))
                         .setOngoing(true);
         Notification notification = builder.build();
 
-        notificationManager.notify(res.getInteger(R.integer.NOTIFICATION_FIND_LOCATION_ID),
+        notificationManager.notify(NOTIFICATION_FIND_LOCATION_ID,
                 notification);
     }
 
     private void cancelNotification() {
-        notificationManager.cancel(res.getInteger(R.integer.NOTIFICATION_FIND_LOCATION_ID));
+        notificationManager.cancel(NOTIFICATION_FIND_LOCATION_ID);
     }
 }
