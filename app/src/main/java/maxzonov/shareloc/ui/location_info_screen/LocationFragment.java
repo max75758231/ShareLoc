@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -13,10 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -30,8 +32,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @InjectPresenter LocationPresenter locationPresenter;
 
-    private static final String PREFERENCES_MESSAGE_TAG = "message";
-    private static final int REQUEST_LOCATION_PERMISSION = 1;
+    private Resources res = getResources();
 
     private PreferencesHelper preferencesHelper;
 
@@ -46,11 +47,16 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @BindString(R.string.tv_location_google) String stringGoogle;
     @BindString(R.string.tv_location_yandex) String stringYandex;
     @BindString(R.string.share_title) String shareTitle;
+    @BindString(R.string.prefs_message_key) String prefsMessage;
+
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
     }
 
     @Override
@@ -60,10 +66,10 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         ButterKnife.bind(this, view);
         setupSharedPreferences();
 
-        preferencesHelper = new PreferencesHelper(PREFERENCES_MESSAGE_TAG, getActivity());
+        preferencesHelper = new PreferencesHelper(prefsMessage, getActivity());
 
         textViewMessage.setText(preferencesHelper
-                .readFromPrefs(PREFERENCES_MESSAGE_TAG, getActivity()));
+                .readFromPrefs(prefsMessage, getActivity()));
         return view;
     }
 
@@ -77,16 +83,18 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                 PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_LOCATION_PERMISSION);
+                    res.getInteger(R.integer.REQUEST_LOCATION_PERMISSION_ID));
         } else {
-            locationPresenter.getLocationClicked(getActivity());
+            locationPresenter.getLocationClicked(getActivity(), fusedLocationClient);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
         switch (requestCode) {
-            case REQUEST_LOCATION_PERMISSION:
+            case 1:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLocation();
@@ -99,7 +107,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @OnClick(R.id.iv_location_share)
     void onShareButtonClick() {
-        String sendInfo = stringAddress + " " + textViewAddress.getText() + "\n"
+        String sendInfo = textViewAddress.getText() + "\n"
+                + stringAddress + "\n"
                 + textViewMessage.getText() + "\n"
                 + stringGoogle + " " + textViewGoogleLink.getText() + "\n"
                 + stringYandex + " " + textViewYandexLink.getText();

@@ -23,6 +23,8 @@
     <string name="yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
 
     <string name="permission_denied">Требуется разрешение на получение местоположения</string>
+    <string name="location_error">Геолокация не определена</string>
+    <string name="gps_searching">Поиск спутников GPS</string>
 
     <!-- Settings -->
     <string name="settings_message_key">message</string>
@@ -41,5 +43,8 @@
     <string name="prefs_message_default">Отправляю тебе свою геолокацию.</string>
 
     <string name="google_geo_api_key">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
-    
+
+    <!-- Getting address -->
+    <string name="no_address_found">Адрес не найден</string>
+
 </resources>

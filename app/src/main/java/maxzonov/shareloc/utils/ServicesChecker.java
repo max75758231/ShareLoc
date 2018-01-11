@@ -1,4 +1,4 @@
-package maxzonov.shareloc.android_services;
+package maxzonov.shareloc.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -62,8 +62,13 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitude),
                 Double.parseDouble(longitude))).title("VyatSU"));
 
-        CameraPosition cameraPosition = CameraPosition.builder().target(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
-                .zoom(15).bearing(0).tilt(45).build();
+        CameraPosition cameraPosition =
+                CameraPosition.builder()
+                        .target(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
+                        .zoom(15)
+                        .bearing(0)
+                        .tilt(45)
+                        .build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 }

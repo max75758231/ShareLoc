@@ -1,83 +1,82 @@
 package maxzonov.shareloc.ui.location_info_screen;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
+import android.content.res.Resources;
+import android.location.Location;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+import com.google.android.gms.location.FusedLocationProviderClient;
 
 import maxzonov.shareloc.R;
+import maxzonov.shareloc.utils.GetAddressClass;
+import maxzonov.shareloc.utils.OnGetAddressCompleted;
 
 @InjectViewState
-public class LocationPresenter extends MvpPresenter<LocationView> {
+public class LocationPresenter extends MvpPresenter<LocationView> implements OnGetAddressCompleted {
 
-    private String latitude = "58.6376";
-    private String longitude = "49.617219";
+    private String latitude;
+    private String longitude;
 
-    private List<Address> addresses;
-
-    private Geocoder geocoder;
+    private Location lastLocation;
 
     private Context context;
+    private Resources res = context.getResources();
 
+    private FusedLocationProviderClient fusedLocationClient;
 
-    void getLocationClicked(Context context) {
+    private NotificationManager notificationManager =
+            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+    //Button click "Get Location" handling
+    void getLocationClicked(Context context, FusedLocationProviderClient fusedLocationClient) {
         this.context = context;
+        this.fusedLocationClient = fusedLocationClient;
+        showNotification();
         getLocation();
     }
 
+    //Suppression caused by the fact that permission has been checked in LocationFragment
+    @SuppressLint("MissingPermission")
     private void getLocation() {
-        showNotification();
-        Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-                NotificationManager manager =
-                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                manager.cancelAll();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
+        fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
+            if (location != null) {
+                lastLocation = location;
+                latitude = String.valueOf(lastLocation.getLatitude());
+                longitude = String.valueOf(lastLocation.getLongitude());
+                new GetAddressClass(context, this).execute(lastLocation);
+            } else {
+                String error = res.getString(R.string.location_error);
+                getViewState().showInfo(error, error, error);
             }
         });
-        thread.start();
-        String address = getAddress();
-        getViewState().showInfo(latitude, longitude, address);
     }
 
-    private String getAddress() {
-        geocoder = new Geocoder(context, Locale.getDefault());
-        String fullAddress = "default";
-        try {
-
-            addresses = geocoder.getFromLocation(Double.parseDouble(latitude),
-                    Double.parseDouble(longitude), 1);
-
-            fullAddress = addresses.get(0).getAddressLine(0);
-        } catch (IOException e) {
-            Log.d("myLog", String.valueOf(e));
-        }
-        return fullAddress;
+    @Override
+    public void onGetAddressCompleted(String address) {
+        getViewState().showInfo(latitude, longitude, address);
+        cancelNotification();
     }
 
     private void showNotification() {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("ShareLoc")
-                        .setContentText("Поиск спутников GPS")
+                        .setContentTitle(res.getString(R.string.app_name))
+                        .setContentText(res.getString(R.string.gps_searching))
                         .setOngoing(true);
         Notification notification = builder.build();
 
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+        notificationManager.notify(res.getInteger(R.integer.NOTIFICATION_FIND_LOCATION_ID),
+                notification);
+    }
+
+    private void cancelNotification() {
+        notificationManager.cancel(res.getInteger(R.integer.NOTIFICATION_FIND_LOCATION_ID));
     }
 }
