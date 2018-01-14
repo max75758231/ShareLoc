@@ -22,13 +22,11 @@ import maxzonov.shareloc.preferences.PreferencesHelper;
 public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
-    private MapView mapView;
+
     private View mView;
     private Resources res;
 
-    private String latitude;
-    private String longitude;
-    private PreferencesHelper prefsHelperLatitude, prefsHelperLongitude;
+    private String latitude, longitude;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,15 +35,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         res = getResources();
 
-        prefsHelperLatitude =
-                new PreferencesHelper(res.getString(R.string.prefs_latitude_key), getActivity());
-        prefsHelperLongitude =
-                new PreferencesHelper(res.getString(R.string.prefs_longitude_key), getActivity());
-
-        latitude = prefsHelperLatitude.readFromPrefs(res.getString(R.string.prefs_latitude_key),
-                getActivity());
-        longitude = prefsHelperLongitude.readFromPrefs(res.getString(R.string.prefs_longitude_key),
-                getActivity());
+        setupSharedPreferences();
     }
 
     @Override
@@ -60,7 +50,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mapView = mView.findViewById(R.id.map_view);
+        MapView mapView = mView.findViewById(R.id.map_view);
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();
@@ -87,4 +77,19 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
                         .build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
+
+    private void setupSharedPreferences() {
+
+        PreferencesHelper prefsHelperLatitude =
+                new PreferencesHelper(res.getString(R.string.prefs_latitude_key), getActivity());
+        PreferencesHelper prefsHelperLongitude =
+                new PreferencesHelper(res.getString(R.string.prefs_longitude_key), getActivity());
+
+        latitude = prefsHelperLatitude.readFromPrefs(res.getString(R.string.prefs_latitude_key),
+                getActivity());
+        longitude = prefsHelperLongitude.readFromPrefs(res.getString(R.string.prefs_longitude_key),
+                getActivity());
+    }
+
+
 }

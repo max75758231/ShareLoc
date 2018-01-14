@@ -20,8 +20,7 @@ import maxzonov.shareloc.utils.OnGetAddressCompleted;
 @InjectViewState
 public class LocationPresenter extends MvpPresenter<LocationView> implements OnGetAddressCompleted {
 
-    private String latitude;
-    private String longitude;
+    private String latitude, longitude;
 
     private Location lastLocation;
 

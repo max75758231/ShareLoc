@@ -31,7 +31,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @InjectPresenter LocationPresenter locationPresenter;
 
-    private PreferencesHelper preferencesHelper;
     private static final int REQUEST_LOCATION_PERMISSION_ID = 1;
 
     @BindView(R.id.tv_location_latitude_result) TextView textViewLatitude;
@@ -63,7 +62,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         ButterKnife.bind(this, view);
         setupSharedPreferences();
 
-        preferencesHelper = new PreferencesHelper(getResources().getString(R.string.prefs_message_key),
+        PreferencesHelper preferencesHelper = new PreferencesHelper(getResources().getString(R.string.prefs_message_key),
                 getActivity());
 
         textViewMessage.setText(preferencesHelper
