@@ -1,5 +1,6 @@
 package maxzonov.shareloc.ui.map_screen;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,20 +17,35 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import maxzonov.shareloc.R;
+import maxzonov.shareloc.preferences.PreferencesHelper;
 
 public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
     private MapView mapView;
     private View mView;
+    private Resources res;
 
-    private String latitude = "58.6376";
-    private String longitude = "49.617219";
+    private String latitude;
+    private String longitude;
+    private PreferencesHelper prefsHelperLatitude, prefsHelperLongitude;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        res = getResources();
+
+        prefsHelperLatitude =
+                new PreferencesHelper(res.getString(R.string.prefs_latitude_key), getActivity());
+        prefsHelperLongitude =
+                new PreferencesHelper(res.getString(R.string.prefs_longitude_key), getActivity());
+
+        latitude = prefsHelperLatitude.readFromPrefs(res.getString(R.string.prefs_latitude_key),
+                getActivity());
+        longitude = prefsHelperLongitude.readFromPrefs(res.getString(R.string.prefs_longitude_key),
+                getActivity());
     }
 
     @Override

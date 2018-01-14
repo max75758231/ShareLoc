@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.location.Location;
 import android.support.v4.app.NotificationCompat;
 
@@ -12,6 +13,7 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 import maxzonov.shareloc.R;
+import maxzonov.shareloc.preferences.PreferencesHelper;
 import maxzonov.shareloc.utils.GetAddressClass;
 import maxzonov.shareloc.utils.OnGetAddressCompleted;
 
@@ -24,17 +26,25 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
     private Location lastLocation;
 
     private Context context;
+    private Resources res;
     private static final int NOTIFICATION_FIND_LOCATION_ID = 1;
 
     private FusedLocationProviderClient fusedLocationClient;
 
     private NotificationManager notificationManager;
+    private PreferencesHelper prefsHelperLatitude, prefsHelperLongitude;
 
     //Button "
     void getLocationClicked(Context context, FusedLocationProviderClient fusedLocationClient) {
         this.context = context;
+        res = context.getResources();
         this.fusedLocationClient = fusedLocationClient;
+
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        prefsHelperLatitude = new PreferencesHelper(res.getString(R.string.prefs_latitude_key), context);
+        prefsHelperLongitude = new PreferencesHelper(res.getString(R.string.prefs_longitude_key), context);
+
         showNotification();
         getLocation();
     }
@@ -48,6 +58,10 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
                 lastLocation = location;
                 latitude = String.valueOf(lastLocation.getLatitude());
                 longitude = String.valueOf(lastLocation.getLongitude());
+
+                prefsHelperLatitude.writeToPrefs(res.getString(R.string.prefs_latitude_key), latitude);
+                prefsHelperLongitude.writeToPrefs(res.getString(R.string.prefs_longitude_key), longitude);
+
                 new GetAddressClass(context, this).execute(lastLocation);
             } else {
                 String error = String.valueOf(R.string.location_error);

@@ -45,7 +45,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @BindString(R.string.tv_location_google) String stringGoogle;
     @BindString(R.string.tv_location_yandex) String stringYandex;
     @BindString(R.string.share_title) String shareTitle;
-    @BindString(R.string.prefs_message_key) String prefsMessage;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -64,10 +63,11 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         ButterKnife.bind(this, view);
         setupSharedPreferences();
 
-        preferencesHelper = new PreferencesHelper(prefsMessage, getActivity());
+        preferencesHelper = new PreferencesHelper(getResources().getString(R.string.prefs_message_key),
+                getActivity());
 
         textViewMessage.setText(preferencesHelper
-                .readFromPrefs(prefsMessage, getActivity()));
+                .readFromPrefs(getResources().getString(R.string.prefs_message_key), getActivity()));
         return view;
     }
 

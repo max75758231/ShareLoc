@@ -40,8 +40,14 @@
 
     <!-- SharedPreferences -->
     <string name="prefs_message_key">message</string>
-    <string name="prefs_message_default">Отправляю тебе свою геолокацию.</string>
+    <string name="prefs_latitude_key">latitude</string>
+    <string name="prefs_longitude_key">longitude</string>
 
+    <string name="prefs_message_default">Отправляю тебе свою геолокацию.</string>
+    <string name="prefs_latitude_default">5.333333</string>
+    <string name="prefs_longitude_default">5.333333</string>
+
+    <!-- Google Geo API key -->
     <string name="google_geo_api_key">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
 
     <!-- Getting address -->
