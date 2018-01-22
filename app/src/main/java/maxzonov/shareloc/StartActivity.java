@@ -1,6 +1,5 @@
 package maxzonov.shareloc;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +12,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import maxzonov.shareloc.di.ScreensComponent;
 import maxzonov.shareloc.di.module.NavigatorModule;
 import maxzonov.shareloc.navigation.AppNavigator;
@@ -21,8 +22,9 @@ import maxzonov.shareloc.ui.settings_screen.SettingsActivity;
 public class StartActivity extends AppCompatActivity {
 
     @Inject @Named("fragment_location") Fragment fragmentLocation;
-
     @Inject @Named("fragment_map") Fragment fragmentMap;
+
+    @BindView(R.id.bottom_navigation) BottomNavigationView navigationView;
 
     private AppNavigator navigator;
     private ScreensComponent screensComponent;
@@ -33,6 +35,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         navigator = new AppNavigator(getSupportFragmentManager());
 
@@ -46,8 +49,7 @@ public class StartActivity extends AppCompatActivity {
             navigator.navigateToFragment(fragmentLocation);
         }
 
-        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

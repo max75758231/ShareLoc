@@ -30,14 +30,6 @@
     <string name="settings_message_key">message</string>
     <string name="tv_settings_message">Текст сообщения</string>
 
-    <string name="tv_settings_preferences">Настройки точности:</string>
-    <string name="et_settings_hint">Введите текст:</string>
-    <string name="btn_settings_ok">OK</string>
-    <string name="settings_services">Настройки точности:</string>
-    <string name="tv_settings_internet">Интернет:</string>
-    <string name="tv_settings_wifi">Wi-Fi:</string>
-    <string name="tv_settings_gps">GPS:</string>
-
     <!-- SharedPreferences -->
     <string name="prefs_message_key">message</string>
     <string name="prefs_latitude_key">latitude</string>

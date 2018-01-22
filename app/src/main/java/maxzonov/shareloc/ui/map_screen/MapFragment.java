@@ -66,7 +66,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitude),
-                Double.parseDouble(longitude))).title("VyatSU"));
+                Double.parseDouble(longitude))));
 
         CameraPosition cameraPosition =
                 CameraPosition.builder()
