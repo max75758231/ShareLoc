@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/bottom_navigation_location"
-        android:icon="@drawable/ic_location_on_black_24dp"
+        android:icon="@drawable/ic_location_black_24dp"
         android:title="@string/bn_location" />
 
     <item
