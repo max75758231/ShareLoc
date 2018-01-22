@@ -1,6 +1,5 @@
 package maxzonov.shareloc.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,6 +8,7 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -17,17 +17,18 @@ import maxzonov.shareloc.R;
 
 public class GetAddressClass extends AsyncTask<Location, Void, String> {
 
-    @SuppressLint("StaticFieldLeak")
-    private Context context;
+//    private Context context;
+    private WeakReference<Context> context;
     private OnGetAddressCompleted listener;
 
     public GetAddressClass(Context context, OnGetAddressCompleted listener) {
-        this.context = context;
+        this.context = new WeakReference<>(context);
         this.listener = listener;
     }
 
     @Override
     protected String doInBackground(Location... locations) {
+        final Context context = this.context.get();
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         Location location = locations[0];
 

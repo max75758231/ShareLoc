@@ -1,15 +1,17 @@
 package maxzonov.shareloc.di;
 
-import dagger.Component;
-import maxzonov.shareloc.ui.location_info_screen.LocationFragment;
-import maxzonov.shareloc.ui.map_screen.MapFragment;
+import dagger.Subcomponent;
+import maxzonov.shareloc.StartActivity;
+import maxzonov.shareloc.di.module.NavigatorModule;
+import maxzonov.shareloc.di.scope.PerActivity;
 
-@Component(modules = {
+@Subcomponent(modules = {
         LocationFragmentModule.class,
-        MapFragmentModule.class
+        MapFragmentModule.class,
+        NavigatorModule.class
 })
-@AppScope
+@PerActivity
 public interface ScreensComponent {
-    LocationFragment getLocationFragment();
-    MapFragment getMapFragment();
+
+    void inject(StartActivity startActivity);
 }

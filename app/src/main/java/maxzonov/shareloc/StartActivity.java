@@ -1,23 +1,31 @@
 package maxzonov.shareloc;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import maxzonov.shareloc.di.DaggerScreensComponent;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+
 import maxzonov.shareloc.di.ScreensComponent;
+import maxzonov.shareloc.di.module.NavigatorModule;
+import maxzonov.shareloc.navigation.AppNavigator;
 import maxzonov.shareloc.ui.settings_screen.SettingsActivity;
-import maxzonov.shareloc.ui.location_info_screen.LocationFragment;
 
 public class StartActivity extends AppCompatActivity {
 
-    private FragmentManager fragmentManager;
-    private Fragment fragmentLocation, fragmentMap;
+    @Inject @Named("fragment_location") Fragment fragmentLocation;
+
+    @Inject @Named("fragment_map") Fragment fragmentMap;
+
+    private AppNavigator navigator;
+    private ScreensComponent screensComponent;
 
     private boolean isMapFragmentVisible = false;
 
@@ -26,22 +34,20 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ScreensComponent daggerScreensComponent = DaggerScreensComponent.builder()
-                .build();
+        navigator = new AppNavigator(getSupportFragmentManager());
 
-        fragmentLocation = daggerScreensComponent.getLocationFragment();
-        fragmentMap = daggerScreensComponent.getMapFragment();
-
-        fragmentManager = getSupportFragmentManager();
-
-        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        screensComponent = App.getAppComponent(getApplicationContext())
+                .screensComponent(new NavigatorModule(navigator));
+        screensComponent.inject(this);
 
         if (savedInstanceState != null) {
             isMapFragmentVisible = savedInstanceState.getBoolean("isMainVisible");
         } else {
-            replaceFragment(new LocationFragment());
+            navigator.navigateToFragment(fragmentLocation);
         }
+
+        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -52,7 +58,7 @@ public class StartActivity extends AppCompatActivity {
                 if (isMapFragmentVisible) {
                     break;
                 } else {
-                    replaceFragment(fragmentMap);
+                    navigator.navigateToFragment(fragmentMap);
                     isMapFragmentVisible = true;
                 }
                 return true;
@@ -62,7 +68,7 @@ public class StartActivity extends AppCompatActivity {
                 if (!isMapFragmentVisible) {
                     break;
                 } else {
-                    replaceFragment(fragmentLocation);
+                    navigator.navigateToFragment(fragmentLocation);
                     isMapFragmentVisible = false;
                 }
                 return true;
@@ -89,14 +95,11 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("isMapFragmentVisible", isMapFragmentVisible);
-    }
-
-    private void replaceFragment(Fragment fragment) {
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_layout, fragment)
-                .commit();
+    public void onBackPressed() {
+        if (navigator.hasPreviousView()) {
+            navigator.navigateToPreviousView();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
