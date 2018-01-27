@@ -67,7 +67,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         this.googleMap = googleMap;
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude))));
 

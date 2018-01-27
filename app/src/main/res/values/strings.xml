@@ -26,6 +26,13 @@
     <string name="location_error">Геолокация не определена</string>
     <string name="gps_searching">Поиск спутников GPS</string>
 
+    <!-- Map screen -->
+
+    <string name="menu_satellite">Спутник</string>
+    <string name="menu_hybrid">Гибрид</string>
+    <string name="menu_map">Карта</string>
+
+
     <!-- Settings -->
     <string name="settings_message_key">message</string>
     <string name="tv_settings_message">Текст сообщения</string>
