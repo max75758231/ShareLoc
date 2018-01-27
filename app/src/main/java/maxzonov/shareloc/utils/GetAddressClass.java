@@ -17,7 +17,6 @@ import maxzonov.shareloc.R;
 
 public class GetAddressClass extends AsyncTask<Location, Void, String> {
 
-//    private Context context;
     private WeakReference<Context> context;
     private OnGetAddressCompleted listener;
 

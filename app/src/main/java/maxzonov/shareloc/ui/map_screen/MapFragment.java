@@ -3,6 +3,9 @@ package maxzonov.shareloc.ui.map_screen;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -35,13 +38,13 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         res = getResources();
 
-        setupSharedPreferences();
+        initSharedPreferences();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
         mView = inflater.inflate(R.layout.fragment_map, container, false);
         return mView;
     }
@@ -65,8 +68,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         this.googleMap = googleMap;
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitude),
-                Double.parseDouble(longitude))));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude))));
 
         CameraPosition cameraPosition =
                 CameraPosition.builder()
@@ -78,7 +81,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
-    private void setupSharedPreferences() {
+    private void initSharedPreferences() {
 
         PreferencesHelper prefsHelperLatitude =
                 new PreferencesHelper(res.getString(R.string.prefs_latitude_key), getActivity());
@@ -91,5 +94,27 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
                 getActivity());
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
 
+        inflater.inflate(R.menu.toolbar_map_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_satellite:
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                return true;
+            case R.id.action_hybrid:
+                googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                return true;
+            case R.id.action_map:
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

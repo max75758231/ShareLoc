@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_satellite"
+        android:title="Спутник"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_hybrid"
+        android:title="Гибрид"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_map"
+        android:title="Карта"
+        app:showAsAction="never"/>
+</menu>

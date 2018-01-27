@@ -33,7 +33,6 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
     private NotificationManager notificationManager;
     private PreferencesHelper prefsHelperLatitude, prefsHelperLongitude;
 
-    //Button "
     void getLocationClicked(Context context, FusedLocationProviderClient fusedLocationClient) {
         this.context = context;
         res = context.getResources();
