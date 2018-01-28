@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tv_bottom_sheet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_sheet_i_am_here"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="10"
+        style="@style/BlackText"/>
+
+    <Button
+        android:id="@+id/btn_bottom_sheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_sheet_yes_button"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
+
+    <ImageView
+        android:id="@+id/btn_bottom_sheet_share"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_share_black_24dp"/>
+
+</LinearLayout>

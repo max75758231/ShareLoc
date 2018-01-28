@@ -1,7 +1,10 @@
 package maxzonov.shareloc.ui.map_screen;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,12 +20,16 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import butterknife.BindString;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
-public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback {
+public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
     private GoogleMap googleMap;
 
@@ -30,6 +37,12 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     private Resources res;
 
     private String latitude, longitude;
+
+    private BottomSheetBehavior sheetBehavior;
+
+    @BindString(R.string.share_title) String shareTitle;
+    @BindString(R.string.tv_location_google) String stringGoogle;
+    @BindString(R.string.tv_location_yandex) String stringYandex;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +59,13 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         mView = inflater.inflate(R.layout.fragment_map, container, false);
+        ButterKnife.bind(this, mView);
+
+        View bottomSheet = mView.findViewById(R.id.bottom_sheet);
+        sheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        sheetBehavior.setPeekHeight(0);
         return mView;
     }
 
@@ -67,9 +87,11 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         this.googleMap = googleMap;
 
-//        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.setOnMarkerDragListener(this);
+
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude))));
+                .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
+                .draggable(true));
 
         CameraPosition cameraPosition =
                 CameraPosition.builder()
@@ -116,5 +138,40 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+        Log.d("myLog", "onMarkerDragStart: " + String.valueOf(marker.getPosition()));
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+        Log.d("myLog", "onMarkerDrag: " + String.valueOf(marker.getPosition()));
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        latitude = String.valueOf(marker.getPosition().latitude);
+        longitude = String.valueOf(marker.getPosition().longitude);
+    }
+
+    @OnClick(R.id.btn_bottom_sheet)
+    void onBottomSheetClicked() {
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+
+    @OnClick(R.id.btn_bottom_sheet_share)
+    void onBottomSheetShareClicked() {
+        String sendInfo = getString(R.string.bottom_sheet_i_am_here_send) + "\n" +
+                stringGoogle + " " + getString(R.string.google_maps_link, latitude, longitude) + "\n"
+                + stringYandex + " " + getString(R.string.yandex_maps_link, latitude, longitude);
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, sendInfo);
+        startActivity(Intent.createChooser(intent, shareTitle));
     }
 }

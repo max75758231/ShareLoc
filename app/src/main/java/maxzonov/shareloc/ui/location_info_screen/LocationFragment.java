@@ -62,11 +62,11 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         ButterKnife.bind(this, view);
         setupSharedPreferences();
 
-        PreferencesHelper preferencesHelper = new PreferencesHelper(getResources().getString(R.string.prefs_message_key),
+        PreferencesHelper preferencesHelper = new PreferencesHelper(getString(R.string.prefs_message_key),
                 getActivity());
 
         textViewMessage.setText(preferencesHelper
-                .readFromPrefs(getResources().getString(R.string.prefs_message_key), getActivity()));
+                .readFromPrefs(getString(R.string.prefs_message_key), getActivity()));
         return view;
     }
 
@@ -123,10 +123,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         textViewLatitude.setText(latitude);
         textViewLongitude.setText(longitude);
 
-        String googleLink = getResources()
-                .getString(R.string.google_maps_link, latitude, longitude);
-        String yandexMapsLink = getResources()
-                .getString(R.string.yandex_maps_link, latitude, longitude);
+        String googleLink = getString(R.string.google_maps_link, latitude, longitude);
+        String yandexMapsLink = getString(R.string.yandex_maps_link, latitude, longitude);
 
         textViewGoogleLink.setText(googleLink);
         textViewYandexLink.setText(yandexMapsLink);
@@ -143,7 +141,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     private void setupSharedPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         textViewMessage.setText(preferences.getString(getString(R.string.prefs_message_key),
-                getResources().getString(R.string.prefs_message_default)));
+                getString(R.string.prefs_message_default)));
 
         preferences.registerOnSharedPreferenceChangeListener(this);
     }
@@ -152,7 +150,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.prefs_message_key))) {
             textViewMessage.setText(sharedPreferences.getString(key,
-                    getResources().getString(R.string.prefs_message_default)));
+                    getString(R.string.prefs_message_default)));
         }
     }
 }
