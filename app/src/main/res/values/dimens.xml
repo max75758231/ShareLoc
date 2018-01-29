@@ -1,8 +1,13 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">24dp</dimen>
 
-    <dimen name="textview_110dp_length">110dp</dimen>
-    <dimen name="fragment_margin_for_bottom_nav">56dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="margin_activity_horizontal">16dp</dimen>
+    <dimen name="margin_activity_vertical">24dp</dimen>
+
+    <dimen name="width_location_tv_110dp">110dp</dimen>
+    <dimen name="margin_all_for_bottom_nav_56dp">56dp</dimen>
+
+    <dimen name="textsize_all_16sp">16sp</dimen>
+
 </resources>

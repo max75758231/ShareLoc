@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/margin_activity_horizontal"
+    android:layout_marginLeft="@dimen/margin_activity_horizontal"
+    android:layout_marginTop="@dimen/margin_activity_vertical"
+    android:layout_marginBottom="@dimen/margin_activity_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,7 +21,7 @@
                 android:id="@+id/btn_location_getLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_location_get"
+                android:text="@string/location_get_button"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tv_location_coords"
+                android:text="@string/location_tv_coords"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_location_getLocation"
                 style="@style/BlackBoldText"/>
@@ -48,9 +48,9 @@
                 <TextView
                     android:id="@+id/tv_location_latitude"
                     style="@style/BlackText"
-                    android:layout_width="@dimen/textview_110dp_length"
+                    android:layout_width="@dimen/width_location_tv_110dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_location_latitude" />
+                    android:text="@string/location_tv_latitude" />
 
                 <TextView
                     android:id="@+id/tv_location_latitude_result"
@@ -72,9 +72,9 @@
                 <TextView
                     android:id="@+id/tv_location_longitude"
                     style="@style/BlackText"
-                    android:layout_width="@dimen/textview_110dp_length"
+                    android:layout_width="@dimen/width_location_tv_110dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_location_longitude"
+                    android:text="@string/location_tv_longitude"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout_latitude" />
 
@@ -100,7 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/tv_location_send"
+                    android:text="@string/location_tv_send"
                     style="@style/BlackBoldText"
                     android:layout_weight="1"/>
 
@@ -108,8 +108,7 @@
                     android:id="@+id/iv_location_share"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    app:srcCompat="@drawable/ic_share_black_24dp"
-                    android:contentDescription="@string/iv_share_descr"/>
+                    app:srcCompat="@drawable/ic_share_black_24dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -125,9 +124,9 @@
 
                 <TextView
                     android:id="@+id/tv_location_message"
-                    android:layout_width="@dimen/textview_110dp_length"
+                    android:layout_width="@dimen/width_location_tv_110dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_location_message"
+                    android:text="@string/location_tv_message"
                     style="@style/BlackText"/>
 
                 <TextView
@@ -151,9 +150,9 @@
 
                 <TextView
                     android:id="@+id/tv_location_address"
-                    android:layout_width="@dimen/textview_110dp_length"
+                    android:layout_width="@dimen/width_location_tv_110dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_location_address"
+                    android:text="@string/location_tv_address"
                     style="@style/BlackText"/>
 
                 <TextView
@@ -177,16 +176,16 @@
 
                 <TextView
                     android:id="@+id/tv_location_google"
-                    android:layout_width="@dimen/textview_110dp_length"
+                    android:layout_width="@dimen/width_location_tv_110dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_location_google"
+                    android:text="@string/location_tv_google"
                     style="@style/BlackText"/>
 
                 <TextView
                     android:id="@+id/tv_location_google_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/google_maps_link"
+                    tools:text="@string/all_google_maps_link"
                     style="@style/BlackText"/>
             </LinearLayout>
 
@@ -203,16 +202,16 @@
 
                 <TextView
                     android:id="@+id/tv_location_yandex"
-                    android:layout_width="@dimen/textview_110dp_length"
+                    android:layout_width="@dimen/width_location_tv_110dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_location_yandex"
+                    android:text="@string/location_tv_yandex"
                     style="@style/BlackText"/>
 
                 <TextView
                     android:id="@+id/tv_location_yandex_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/yandex_maps_link"
+                    tools:text="@string/all_yandex_maps_link"
                     style="@style/BlackText"/>
             </LinearLayout>
         </LinearLayout>

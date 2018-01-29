@@ -1,46 +1,55 @@
 <resources>
     <string name="app_name">ShareLoc</string>
+
+    <!-- General strings -->
+
     <string name="bn_map">Карта</string>
     <string name="bn_location">Инф. о геолокации</string>
-    <string name="settings_title">Settings</string>
+
+    <string name="notification_gps_searching">Поиск спутников GPS</string>
+
+    <string name="toolbar_settings_title">Settings</string>
+
+    <string name="all_share_title">Share via</string>
+
+    <string name="all_google_maps_link">maps.google.com/maps?q=loc:%1$s,%2$s</string>
+    <string name="all_yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
+
+    <string name="all_address_error">Адрес не найден</string>
 
     <!-- Location screen -->
-    <string name="btn_location_get">Получить мою геолокацию</string>
 
-    <string name="tv_location_coords">Координаты:</string>
-    <string name="tv_location_latitude">Широта:</string>
-    <string name="tv_location_longitude">Долгота:</string>
-    <string name="tv_location_send">Отправить:</string>
-    <string name="tv_location_address">Адрес:</string>
-    <string name="tv_location_message">Сообщение:</string>
-    <string name="tv_location_google">Google Maps:</string>
-    <string name="tv_location_yandex">Яндекс.Карты:</string>
+    <string name="location_get_button">Получить мою геолокацию</string>
 
-    <string name="share_title">Share via</string>
-    <string name="iv_share_descr">Share geolocation</string>
+    <string name="location_tv_coords">Координаты:</string>
+    <string name="location_tv_latitude">Широта:</string>
+    <string name="location_tv_longitude">Долгота:</string>
+    <string name="location_tv_send">Отправить:</string>
+    <string name="location_tv_address">Адрес:</string>
+    <string name="location_tv_message">Сообщение:</string>
+    <string name="location_tv_google">Google Maps:</string>
+    <string name="location_tv_yandex">Яндекс.Карты:</string>
 
-    <string name="google_maps_link">maps.google.com/maps?q=loc:%1$s,%2$s</string>
-    <string name="yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
-
-    <string name="permission_denied">Требуется разрешение на получение местоположения</string>
-    <string name="location_error">Геолокация не определена</string>
-    <string name="gps_searching">Поиск спутников GPS</string>
+    <string name="location_permission_denied">Требуется разрешение на получение местоположения</string>
+    <string name="location_geolocation_error">Геолокация не определена</string>
 
     <!-- Map screen -->
 
-    <string name="menu_satellite">Спутник</string>
-    <string name="menu_hybrid">Гибрид</string>
-    <string name="menu_map">Карта</string>
+    <string name="menu_map_satellite">Спутник</string>
+    <string name="menu_map_hybrid">Гибрид</string>
+    <string name="menu_map_map">Карта</string>
 
     <string name="bottom_sheet_i_am_here">Я нахожусь здесь</string>
     <string name="bottom_sheet_i_am_here_send">Я нахожусь здесь:</string>
     <string name="bottom_sheet_yes_button">Да</string>
 
     <!-- Settings -->
+
     <string name="settings_message_key">message</string>
-    <string name="tv_settings_message">Текст сообщения</string>
+    <string name="settings_tv_message">Текст сообщения</string>
 
     <!-- SharedPreferences -->
+
     <string name="prefs_message_key">message</string>
     <string name="prefs_latitude_key">latitude</string>
     <string name="prefs_longitude_key">longitude</string>
@@ -50,9 +59,6 @@
     <string name="prefs_longitude_default">5.333333</string>
 
     <!-- Google Geo API key -->
-    <string name="google_geo_api_key">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
 
-    <!-- Getting address -->
-    <string name="no_address_found">Адрес не найден</string>
-
+    <string name="manifest_google_geo_api_key">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
 </resources>

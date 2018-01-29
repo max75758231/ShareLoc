@@ -62,7 +62,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
 
                 new GetAddressClass(context, this).execute(lastLocation);
             } else {
-                String error = context.getString(R.string.location_error);
+                String error = context.getString(R.string.location_geolocation_error);
                 getViewState().showInfo(error, error, error);
             }
         });
@@ -79,7 +79,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(context.getString(R.string.app_name))
-                        .setContentText(context.getString(R.string.gps_searching))
+                        .setContentText(context.getString(R.string.notification_gps_searching))
                         .setOngoing(true);
         Notification notification = builder.build();
 

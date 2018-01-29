@@ -40,10 +40,10 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @BindView(R.id.tv_location_google_link) TextView textViewGoogleLink;
     @BindView(R.id.tv_location_yandex_link) TextView textViewYandexLink;
 
-    @BindString(R.string.tv_location_address) String stringAddress;
-    @BindString(R.string.tv_location_google) String stringGoogle;
-    @BindString(R.string.tv_location_yandex) String stringYandex;
-    @BindString(R.string.share_title) String shareTitle;
+    @BindString(R.string.location_tv_address) String stringAddress;
+    @BindString(R.string.location_tv_google) String stringGoogle;
+    @BindString(R.string.location_tv_yandex) String stringYandex;
+    @BindString(R.string.all_share_title) String shareTitle;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -96,7 +96,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLocation();
                 } else {
-                    Log.d("myLog", getString(R.string.permission_denied));
+                    Log.d("myLog", getString(R.string.location_permission_denied));
                 }
                 break;
         }
@@ -123,8 +123,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         textViewLatitude.setText(latitude);
         textViewLongitude.setText(longitude);
 
-        String googleLink = getString(R.string.google_maps_link, latitude, longitude);
-        String yandexMapsLink = getString(R.string.yandex_maps_link, latitude, longitude);
+        String googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
+        String yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);
 
         textViewGoogleLink.setText(googleLink);
         textViewYandexLink.setText(yandexMapsLink);

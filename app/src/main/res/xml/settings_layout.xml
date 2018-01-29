@@ -3,7 +3,7 @@
 
     <EditTextPreference
         android:defaultValue="@string/prefs_message_default"
-        android:title="@string/tv_settings_message"
+        android:title="@string/settings_tv_message"
         android:key="@string/settings_message_key"/>
 
 </PreferenceScreen>

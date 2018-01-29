@@ -40,9 +40,9 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private BottomSheetBehavior sheetBehavior;
 
-    @BindString(R.string.share_title) String shareTitle;
-    @BindString(R.string.tv_location_google) String stringGoogle;
-    @BindString(R.string.tv_location_yandex) String stringYandex;
+    @BindString(R.string.all_share_title) String shareTitle;
+    @BindString(R.string.location_tv_google) String stringGoogle;
+    @BindString(R.string.location_tv_yandex) String stringYandex;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -165,8 +165,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     @OnClick(R.id.btn_bottom_sheet_share)
     void onBottomSheetShareClicked() {
         String sendInfo = getString(R.string.bottom_sheet_i_am_here_send) + "\n" +
-                stringGoogle + " " + getString(R.string.google_maps_link, latitude, longitude) + "\n"
-                + stringYandex + " " + getString(R.string.yandex_maps_link, latitude, longitude);
+                stringGoogle + " " + getString(R.string.all_google_maps_link, latitude, longitude) + "\n"
+                + stringYandex + " " + getString(R.string.all_yandex_maps_link, latitude, longitude);
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);

@@ -42,7 +42,7 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
 
             if (addresses == null || addresses.size() == 0) {
                 if (resultMessage.isEmpty()) {
-                    resultMessage = context.getString(R.string.no_address_found);
+                    resultMessage = context.getString(R.string.all_address_error);
                 }
             } else {
                 Address address = addresses.get(0);
@@ -53,10 +53,10 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
                 resultMessage = TextUtils.join("\n", addressParts);
             }
         } catch (IOException ioException) {
-            resultMessage = context.getString(R.string.no_address_found);
+            resultMessage = context.getString(R.string.all_address_error);
             ioException.printStackTrace();
         } catch (IllegalArgumentException illegalArgException) {
-            resultMessage = context.getString(R.string.no_address_found);
+            resultMessage = context.getString(R.string.all_address_error);
             illegalArgException.printStackTrace();
         }
         return resultMessage;

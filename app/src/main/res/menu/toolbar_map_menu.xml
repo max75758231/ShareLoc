@@ -4,16 +4,16 @@
 
     <item
         android:id="@+id/action_map"
-        android:title="@string/menu_map"
+        android:title="@string/menu_map_map"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_satellite"
-        android:title="@string/menu_satellite"
+        android:title="@string/menu_map_satellite"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_hybrid"
-        android:title="@string/menu_hybrid"
+        android:title="@string/menu_map_hybrid"
         app:showAsAction="never"/>
 </menu>
