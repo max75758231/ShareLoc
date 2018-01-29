@@ -14,7 +14,7 @@ import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import maxzonov.shareloc.di.ScreensComponent;
+import maxzonov.shareloc.di.component.ScreensComponent;
 import maxzonov.shareloc.di.module.NavigatorModule;
 import maxzonov.shareloc.navigation.AppNavigator;
 import maxzonov.shareloc.ui.settings_screen.SettingsActivity;

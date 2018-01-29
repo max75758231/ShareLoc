@@ -1,4 +1,4 @@
-package maxzonov.shareloc.di;
+package maxzonov.shareloc.di.module;
 
 import android.support.v4.app.Fragment;
 

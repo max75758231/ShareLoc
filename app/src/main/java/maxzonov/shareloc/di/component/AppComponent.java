@@ -3,9 +3,8 @@ package maxzonov.shareloc.di.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import maxzonov.shareloc.di.LocationFragmentModule;
-import maxzonov.shareloc.di.MapFragmentModule;
-import maxzonov.shareloc.di.ScreensComponent;
+import maxzonov.shareloc.di.module.LocationFragmentModule;
+import maxzonov.shareloc.di.module.MapFragmentModule;
 import maxzonov.shareloc.di.module.AppModule;
 import maxzonov.shareloc.di.module.NavigatorModule;
 
