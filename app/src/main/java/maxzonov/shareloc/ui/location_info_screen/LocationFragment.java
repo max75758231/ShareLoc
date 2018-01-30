@@ -60,13 +60,9 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_location_info, container, false);
         ButterKnife.bind(this, view);
+
         setupSharedPreferences();
-
-        PreferencesHelper preferencesHelper = new PreferencesHelper(getString(R.string.prefs_message_key),
-                getActivity());
-
-        textViewMessage.setText(preferencesHelper
-                .readFromPrefs(getString(R.string.prefs_message_key), getActivity()));
+        
         return view;
     }
 
