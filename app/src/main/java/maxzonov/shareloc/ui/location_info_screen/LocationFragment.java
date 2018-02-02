@@ -24,7 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import maxzonov.shareloc.R;
-import maxzonov.shareloc.preferences.PreferencesHelper;
 
 public class LocationFragment extends MvpAppCompatFragment implements LocationView,
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -64,6 +63,26 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         setupSharedPreferences();
         
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle args = getArguments();
+
+        if (args != null) {
+            String latitude = args.getString("latitude");
+            String longitude = args.getString("longitude");
+            String address = args.getString("address");
+
+            textViewLatitude.setText(latitude);
+            textViewLongitude.setText(longitude);
+            textViewAddress.setText(address);
+            String googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
+            String yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);
+            textViewGoogleLink.setText(googleLink);
+            textViewGoogleLink.setText(yandexMapsLink);
+        }
     }
 
     @OnClick(R.id.btn_location_getLocation)
@@ -147,6 +166,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         if (key.equals(getString(R.string.prefs_message_key))) {
             textViewMessage.setText(sharedPreferences.getString(key,
                     getString(R.string.prefs_message_default)));
+        } else if (key.equals(getString(R.string.prefs_latitude_key))) {
+            textViewLatitude.setText(sharedPreferences.getString(key,
+                    getString(R.string.prefs_latitude_default)));
+        } else if (key.equals(getString(R.string.prefs_longitude_key))) {
+            textViewLongitude.setText(sharedPreferences.getString(key,
+                    getString(R.string.prefs_longitude_default)));
         }
     }
 }

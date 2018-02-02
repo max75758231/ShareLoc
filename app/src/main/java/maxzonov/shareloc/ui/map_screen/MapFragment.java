@@ -1,10 +1,9 @@
 package maxzonov.shareloc.ui.map_screen;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -29,16 +29,20 @@ import butterknife.OnClick;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
-public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
+public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback,
+        GoogleMap.OnMarkerDragListener,
+        maxzonov.shareloc.ui.map_screen.MapView {
+
+    @InjectPresenter MapPresenter mapPresenter;
 
     private GoogleMap googleMap;
 
     private View mView;
-    private Resources res;
 
-    private String latitude, longitude;
+    private String latitude, longitude, address;
 
     private BottomSheetBehavior sheetBehavior;
+    private OnLocationChangedListener listener;
 
     @BindString(R.string.all_share_title) String shareTitle;
     @BindString(R.string.location_tv_google) String stringGoogle;
@@ -49,9 +53,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        res = getResources();
-
         initSharedPreferences();
+        mapPresenter.getAddress(getActivity(), latitude, longitude);
     }
 
     @Override
@@ -82,6 +85,17 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (OnLocationChangedListener) context;
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
 
@@ -91,7 +105,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
-                .draggable(true));
+                .draggable(true).title(address));
 
         CameraPosition cameraPosition =
                 CameraPosition.builder()
@@ -105,14 +119,12 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private void initSharedPreferences() {
 
-        PreferencesHelper prefsHelperLatitude =
-                new PreferencesHelper(res.getString(R.string.prefs_latitude_key), getActivity());
-        PreferencesHelper prefsHelperLongitude =
-                new PreferencesHelper(res.getString(R.string.prefs_longitude_key), getActivity());
+        PreferencesHelper prefsHelperLatitude = new PreferencesHelper(getString(R.string.prefs_latitude_key), getActivity());
+        PreferencesHelper prefsHelperLongitude = new PreferencesHelper(getString(R.string.prefs_longitude_key), getActivity());
 
-        latitude = prefsHelperLatitude.readFromPrefs(res.getString(R.string.prefs_latitude_key),
+        latitude = prefsHelperLatitude.readFromPrefs(getString(R.string.prefs_latitude_key),
                 getActivity());
-        longitude = prefsHelperLongitude.readFromPrefs(res.getString(R.string.prefs_longitude_key),
+        longitude = prefsHelperLongitude.readFromPrefs(getString(R.string.prefs_longitude_key),
                 getActivity());
     }
 
@@ -142,24 +154,28 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     @Override
     public void onMarkerDragStart(Marker marker) {
-        Log.d("myLog", "onMarkerDragStart: " + String.valueOf(marker.getPosition()));
+        marker.hideInfoWindow();
     }
 
     @Override
     public void onMarkerDrag(Marker marker) {
-        Log.d("myLog", "onMarkerDrag: " + String.valueOf(marker.getPosition()));
+        marker.hideInfoWindow();
     }
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
         latitude = String.valueOf(marker.getPosition().latitude);
         longitude = String.valueOf(marker.getPosition().longitude);
+
+        mapPresenter.getAddressAndSetTitle(latitude, longitude, marker);
     }
 
     @OnClick(R.id.btn_bottom_sheet)
     void onBottomSheetClicked() {
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        listener.onLocationChanged(latitude, longitude, address);
     }
 
     @OnClick(R.id.btn_bottom_sheet_share)
@@ -173,5 +189,16 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, sendInfo);
         startActivity(Intent.createChooser(intent, shareTitle));
+    }
+
+    @Override
+    public void showAddressInMarker(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public void showAndRefreshAddressInMarker(String address, Marker marker) {
+        this.address = address;
+        marker.setTitle(address);
     }
 }

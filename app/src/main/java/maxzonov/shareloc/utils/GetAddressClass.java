@@ -18,7 +18,7 @@ import maxzonov.shareloc.R;
 public class GetAddressClass extends AsyncTask<Location, Void, String> {
 
     private WeakReference<Context> context;
-    private OnGetAddressCompleted listener;
+    private final OnGetAddressCompleted listener;
 
     public GetAddressClass(Context context, OnGetAddressCompleted listener) {
         this.context = new WeakReference<>(context);

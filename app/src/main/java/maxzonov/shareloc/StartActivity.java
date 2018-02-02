@@ -17,9 +17,10 @@ import butterknife.ButterKnife;
 import maxzonov.shareloc.di.component.ScreensComponent;
 import maxzonov.shareloc.di.module.NavigatorModule;
 import maxzonov.shareloc.navigation.AppNavigator;
+import maxzonov.shareloc.ui.map_screen.OnLocationChangedListener;
 import maxzonov.shareloc.ui.settings_screen.SettingsActivity;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity implements OnLocationChangedListener {
 
     @Inject @Named("fragment_location") Fragment fragmentLocation;
     @Inject @Named("fragment_map") Fragment fragmentMap;
@@ -27,7 +28,6 @@ public class StartActivity extends AppCompatActivity {
     @BindView(R.id.bottom_navigation) BottomNavigationView navigationView;
 
     private AppNavigator navigator;
-    private ScreensComponent screensComponent;
 
     private boolean isMapFragmentVisible = false;
 
@@ -39,7 +39,7 @@ public class StartActivity extends AppCompatActivity {
 
         navigator = new AppNavigator(getSupportFragmentManager());
 
-        screensComponent = App.getAppComponent(getApplicationContext())
+        ScreensComponent screensComponent = App.getAppComponent(getApplicationContext())
                 .screensComponent(new NavigatorModule(navigator));
         screensComponent.inject(this);
 
@@ -102,5 +102,15 @@ public class StartActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onLocationChanged(String latitude, String longitude, String address) {
+        Bundle args = new Bundle();
+        args.putString("latitude", latitude);
+        args.putString("longitude", longitude);
+        args.putString("address", address);
+        fragmentLocation.setArguments(args);
+        navigator.navigateToFragment(fragmentLocation);
     }
 }
