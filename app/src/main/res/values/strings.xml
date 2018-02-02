@@ -17,6 +17,8 @@
 
     <string name="all_address_error">Адрес не найден</string>
 
+    <string name="all_exit_button">Для выхода из приложения нажмите "Назад" еще раз</string>
+
     <!-- Location screen -->
 
     <string name="location_get_button">Получить мою геолокацию</string>

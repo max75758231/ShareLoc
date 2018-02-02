@@ -2,11 +2,13 @@ package maxzonov.shareloc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,6 +32,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
     private AppNavigator navigator;
 
     private boolean isMapFragmentVisible = false;
+    private boolean isBackButtonClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,11 +100,15 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     @Override
     public void onBackPressed() {
-        if (navigator.hasPreviousView()) {
-            navigator.navigateToPreviousView();
-        } else {
-            super.onBackPressed();
+        if (isBackButtonClicked) {
+            finish();
+            return;
         }
+
+        isBackButtonClicked = true;
+        Toast.makeText(this, getString(R.string.all_exit_button), Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(() -> isBackButtonClicked = false, 2000);
     }
 
     @Override
