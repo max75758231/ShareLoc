@@ -44,8 +44,18 @@ public class MapPresenter extends MvpPresenter<MapView> {
     }
 
     private void buildAddressString() {
-        address = addresses.get(0).getLocality() + ", " +
-                addresses.get(0).getThoroughfare() + ", " +
-                addresses.get(0).getSubThoroughfare();
+        String adminArea = addresses.get(0).getAdminArea();
+        String locality = addresses.get(0).getLocality();
+        String thoroughfare = addresses.get(0).getThoroughfare();
+        String subThoroughfare = addresses.get(0).getSubThoroughfare();
+        String feature = addresses.get(0).getFeatureName();
+
+        if (thoroughfare != null && subThoroughfare != null) {
+            address = adminArea + ", " + locality + ", " + thoroughfare + ", " + subThoroughfare;
+        } else if (locality != null){
+            address = adminArea + ", " + locality + ", " + feature;
+        } else {
+            address = adminArea;
+        }
     }
 }
