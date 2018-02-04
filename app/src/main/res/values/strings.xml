@@ -17,7 +17,7 @@
 
     <string name="all_address_error">Адрес не найден</string>
 
-    <string name="all_exit_button">Для выхода из приложения нажмите "Назад" еще раз</string>
+    <string name="all_exit_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
 
     <!-- Location screen -->
 

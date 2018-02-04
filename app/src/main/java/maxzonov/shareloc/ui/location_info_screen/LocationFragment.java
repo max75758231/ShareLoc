@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -46,6 +47,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     private FusedLocationProviderClient fusedLocationClient;
 
+    private View view;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +60,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_location_info, container, false);
+        view = inflater.inflate(R.layout.fragment_location_info, container, false);
         ButterKnife.bind(this, view);
 
         setupSharedPreferences();
@@ -106,14 +109,15 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                                            @NonNull int[] grantResults) {
 
         switch (requestCode) {
-            case 1:
+            case REQUEST_LOCATION_PERMISSION_ID:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLocation();
                 } else {
-                    Log.d("myLog", getString(R.string.location_permission_denied));
+                    Toast.makeText(view.getContext(), getString(R.string.location_permission_denied),
+                            Toast.LENGTH_SHORT).show();
                 }
-                break;
+                return;
         }
     }
 
