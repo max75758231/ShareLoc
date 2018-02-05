@@ -123,8 +123,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @OnClick(R.id.iv_location_share)
     void onShareButtonClick() {
-        String sendInfo = textViewAddress.getText() + "\n"
-                + stringAddress + "\n"
+        String sendInfo = stringAddress + "\n"
+                + textViewAddress.getText() + "\n"
                 + textViewMessage.getText() + "\n"
                 + stringGoogle + " " + textViewGoogleLink.getText() + "\n"
                 + stringYandex + " " + textViewYandexLink.getText();
