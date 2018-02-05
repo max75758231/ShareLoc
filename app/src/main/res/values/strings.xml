@@ -45,6 +45,8 @@
     <string name="bottom_sheet_i_am_here_send">Я нахожусь здесь:</string>
     <string name="bottom_sheet_yes_button">Да</string>
 
+    <string name="bottom_sheet_listener_error">Невозможно перейти на экран информации</string>
+
     <!-- Settings -->
 
     <string name="settings_message_key">message</string>

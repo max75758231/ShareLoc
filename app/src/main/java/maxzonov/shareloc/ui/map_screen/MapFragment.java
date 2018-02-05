@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -91,6 +92,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         try {
             listener = (OnLocationChangedListener) context;
         } catch (ClassCastException e) {
+            listener = null;
             e.printStackTrace();
         }
     }
@@ -175,7 +177,12 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     @OnClick(R.id.btn_bottom_sheet)
     void onBottomSheetClicked() {
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        listener.onLocationChanged(latitude, longitude, address);
+        if (listener != null) {
+            listener.onLocationChanged(latitude, longitude, address);
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.bottom_sheet_listener_error),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.btn_bottom_sheet_share)
