@@ -39,7 +39,13 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
                     location.getLatitude(),
                     location.getLongitude(),
                     1);
-
+        } catch (IOException ioException) {
+            resultMessage = context.getString(R.string.all_address_error);
+            ioException.printStackTrace();
+        } catch (IllegalArgumentException illegalArgException) {
+            resultMessage = context.getString(R.string.all_address_error);
+            illegalArgException.printStackTrace();
+        } finally {
             if (addresses == null || addresses.size() == 0) {
                 if (resultMessage.isEmpty()) {
                     resultMessage = context.getString(R.string.all_address_error);
@@ -52,12 +58,6 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
                 }
                 resultMessage = TextUtils.join("\n", addressParts);
             }
-        } catch (IOException ioException) {
-            resultMessage = context.getString(R.string.all_address_error);
-            ioException.printStackTrace();
-        } catch (IllegalArgumentException illegalArgException) {
-            resultMessage = context.getString(R.string.all_address_error);
-            illegalArgException.printStackTrace();
         }
         return resultMessage;
     }
