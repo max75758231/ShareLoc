@@ -17,6 +17,10 @@
 
     <string name="all_address_error">Адрес не найден</string>
 
+    <string name="all_latitude_intent_key">latitude</string>
+    <string name="all_longitude_intent_key">longitude</string>
+    <string name="all_address_intent_key">address</string>
+
     <string name="all_exit_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
 
     <!-- Location screen -->

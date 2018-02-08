@@ -74,9 +74,9 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         Bundle args = getArguments();
 
         if (args != null) {
-            String latitude = args.getString("latitude");
-            String longitude = args.getString("longitude");
-            String address = args.getString("address");
+            String latitude = args.getString(getString(R.string.all_latitude_intent_key));
+            String longitude = args.getString(getString(R.string.all_longitude_intent_key));
+            String address = args.getString(getString(R.string.all_address_intent_key));
 
             textViewLatitude.setText(latitude);
             textViewLongitude.setText(longitude);

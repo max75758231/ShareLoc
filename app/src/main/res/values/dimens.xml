@@ -5,9 +5,20 @@
     <dimen name="margin_activity_horizontal">16dp</dimen>
     <dimen name="margin_activity_vertical">24dp</dimen>
 
-    <dimen name="width_location_tv_110dp">110dp</dimen>
-    <dimen name="margin_all_for_bottom_nav_56dp">56dp</dimen>
+    <!-- General dimens -->
 
     <dimen name="textsize_all_16sp">16sp</dimen>
+    <dimen name="margin_all_for_bottom_nav_56dp">56dp</dimen>
+
+    <!-- Location screen -->
+
+    <dimen name="width_location_tv_110dp">110dp</dimen>
+    <dimen name="margin_location_layouts_and_tv_16dp">16dp</dimen>
+
+    <!-- Map screen -->
+
+    <dimen name="margin_bottom_sheet_8dp">8dp</dimen>
+
+
 
 </resources>
