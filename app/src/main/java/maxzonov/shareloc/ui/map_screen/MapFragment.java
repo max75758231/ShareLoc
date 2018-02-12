@@ -104,6 +104,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         this.googleMap = googleMap;
 
         googleMap.setOnMarkerDragListener(this);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setCompassEnabled(true);
 
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
