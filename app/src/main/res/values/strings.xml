@@ -63,8 +63,8 @@
     <string name="prefs_longitude_key">longitude</string>
 
     <string name="prefs_message_default">Отправляю тебе свою геолокацию.</string>
-    <string name="prefs_latitude_default">5.333333</string>
-    <string name="prefs_longitude_default">5.333333</string>
+    <string name="prefs_latitude_default">0.0</string>
+    <string name="prefs_longitude_default">0.0</string>
 
     <!-- Google Geo API key -->
 
