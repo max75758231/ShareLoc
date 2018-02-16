@@ -55,8 +55,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         setRetainInstance(true);
 
         initSharedPreferences();
-        if (!latitude.equals(getString(R.string.prefs_latitude_default)) &&
-                !longitude.equals(getString(R.string.prefs_longitude_default))) {
+        if (!latitude.equals(getString(R.string.prefs_latitude_default))
+                && !longitude.equals(getString(R.string.prefs_longitude_default))) {
             mapPresenter.getAddress(getActivity(), latitude, longitude);
         }
     }

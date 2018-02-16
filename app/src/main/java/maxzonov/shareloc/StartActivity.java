@@ -13,7 +13,6 @@ import android.widget.Toast;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import maxzonov.shareloc.di.component.ScreensComponent;
@@ -33,6 +32,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     private boolean isMapFragmentVisible = false;
     private boolean isBackButtonClicked = false;
+    private static int BACK_PRESSED_DELAY = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +82,13 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 startActivity(new Intent(StartActivity.this, SettingsActivity.class));
@@ -108,11 +108,11 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
         isBackButtonClicked = true;
         Toast.makeText(this, getString(R.string.all_exit_button), Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(() -> isBackButtonClicked = false, 2000);
+        new Handler().postDelayed(() -> isBackButtonClicked = false, BACK_PRESSED_DELAY);
     }
 
     @Override
-    public void onLocationChanged(String latitude, String longitude, String address) {
+    public void onLocationChanged(final String latitude, final String longitude, final String address) {
         Bundle args = new Bundle();
         args.putString(getString(R.string.all_latitude_intent_key), latitude);
         args.putString(getString(R.string.all_longitude_intent_key), longitude);

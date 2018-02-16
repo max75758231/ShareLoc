@@ -33,7 +33,7 @@ public class MapPresenter extends MvpPresenter<MapView> {
         getViewState().showAndRefreshAddressInMarker(address, marker);
     }
 
-    private void requestAddressFromNetwork(String latitude, String longitude){
+    private void requestAddressFromNetwork(String latitude, String longitude) {
         try {
             addresses = geocoder.getFromLocation(Double.parseDouble(latitude),
                     Double.parseDouble(longitude), 1);
@@ -52,7 +52,7 @@ public class MapPresenter extends MvpPresenter<MapView> {
 
         if (thoroughfare != null && subThoroughfare != null) {
             address = adminArea + ", " + locality + ", " + thoroughfare + ", " + subThoroughfare;
-        } else if (locality != null){
+        } else if (locality != null) {
             address = adminArea + ", " + locality + ", " + feature;
         } else {
             address = adminArea;
