@@ -1,4 +1,4 @@
-package maxzonov.shareloc.ui.map_screen;
+package maxzonov.shareloc.ui.map;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +32,7 @@ import maxzonov.shareloc.preferences.PreferencesHelper;
 
 public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallback,
         GoogleMap.OnMarkerDragListener,
-        maxzonov.shareloc.ui.map_screen.MapView {
+        maxzonov.shareloc.ui.map.MapView {
 
     @InjectPresenter MapPresenter mapPresenter;
 

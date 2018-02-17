@@ -3,5 +3,5 @@
     android:id="@+id/activity_settings"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:name = "maxzonov.shareloc.ui.settings_screen.SettingsFragment">
+    android:name = "maxzonov.shareloc.ui.settings.SettingsFragment">
 </fragment>

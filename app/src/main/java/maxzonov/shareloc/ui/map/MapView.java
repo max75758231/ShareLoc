@@ -1,4 +1,4 @@
-package maxzonov.shareloc.ui.map_screen;
+package maxzonov.shareloc.ui.map;
 
 import com.arellomobile.mvp.MvpView;
 import com.google.android.gms.maps.model.Marker;

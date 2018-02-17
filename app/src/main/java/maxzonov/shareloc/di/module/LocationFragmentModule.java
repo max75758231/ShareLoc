@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
-import maxzonov.shareloc.ui.location_info_screen.LocationFragment;
+import maxzonov.shareloc.ui.location.LocationFragment;
 
 @Module
 public class LocationFragmentModule {

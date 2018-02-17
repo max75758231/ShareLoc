@@ -1,4 +1,4 @@
-package maxzonov.shareloc.ui.map_screen;
+package maxzonov.shareloc.ui.map;
 
 import android.content.Context;
 import android.location.Address;

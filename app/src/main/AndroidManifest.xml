@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.settings_screen.SettingsActivity"/>
+        <activity android:name=".ui.settings.SettingsActivity"/>
 
         <!-- Google API key for using Google Maps -->
         <meta-data

@@ -1,4 +1,4 @@
-package maxzonov.shareloc.ui.settings_screen;
+package maxzonov.shareloc.ui.settings;
 
 
 import android.os.Bundle;

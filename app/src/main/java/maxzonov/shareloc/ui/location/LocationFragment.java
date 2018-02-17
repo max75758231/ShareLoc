@@ -1,4 +1,4 @@
-package maxzonov.shareloc.ui.location_info_screen;
+package maxzonov.shareloc.ui.location;
 
 import android.Manifest;
 import android.content.Intent;

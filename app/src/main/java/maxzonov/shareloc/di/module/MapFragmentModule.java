@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
-import maxzonov.shareloc.ui.map_screen.MapFragment;
+import maxzonov.shareloc.ui.map.MapFragment;
 
 @Module
 public class MapFragmentModule {

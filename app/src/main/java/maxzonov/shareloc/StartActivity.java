@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
 import maxzonov.shareloc.di.component.ScreensComponent;
 import maxzonov.shareloc.di.module.NavigatorModule;
 import maxzonov.shareloc.navigation.AppNavigator;
-import maxzonov.shareloc.ui.map_screen.OnLocationChangedListener;
-import maxzonov.shareloc.ui.settings_screen.SettingsActivity;
+import maxzonov.shareloc.ui.map.OnLocationChangedListener;
+import maxzonov.shareloc.ui.settings.SettingsActivity;
 
 public class StartActivity extends AppCompatActivity implements OnLocationChangedListener {
 
@@ -32,7 +32,6 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     private boolean isMapFragmentVisible = false;
     private boolean isBackButtonClicked = false;
-    private static int BACK_PRESSED_DELAY = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +99,9 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     @Override
     public void onBackPressed() {
+
+        int BACK_PRESSED_DELAY = 2000;
+
         if (isBackButtonClicked) {
             finish();
             return;
