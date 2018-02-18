@@ -41,7 +41,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
         navigator = new AppNavigator(getSupportFragmentManager());
 
-        ScreensComponent screensComponent = App.getAppComponent(getApplicationContext())
+        ScreensComponent screensComponent = App.getAppComponent(this)
                 .screensComponent(new NavigatorModule(navigator));
         screensComponent.inject(this);
 
