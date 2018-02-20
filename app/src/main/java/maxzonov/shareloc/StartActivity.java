@@ -10,11 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import maxzonov.shareloc.di.component.ScreensComponent;
 import maxzonov.shareloc.di.module.NavigatorModule;
 import maxzonov.shareloc.navigation.AppNavigator;
@@ -81,6 +82,13 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
     };
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean("isMainVisible", isMapFragmentVisible);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
         return true;
@@ -108,6 +116,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
         }
 
         isBackButtonClicked = true;
+
         Toast.makeText(this, getString(R.string.all_exit_button), Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(() -> isBackButtonClicked = false, BACK_PRESSED_DELAY);
