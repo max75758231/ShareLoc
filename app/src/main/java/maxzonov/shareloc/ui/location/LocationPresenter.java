@@ -26,7 +26,9 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
 
     private Context context;
     private Resources res;
+
     private static final int NOTIFICATION_FIND_LOCATION_ID = 1;
+    private static final String NOTIFICATION_FIND_LOCATION_CHANNEL = "Channel_1";
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -76,7 +78,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
 
     private void showNotification() {
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context)
+                new NotificationCompat.Builder(context, NOTIFICATION_FIND_LOCATION_CHANNEL)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(context.getString(R.string.app_name))
                         .setContentText(context.getString(R.string.notification_gps_searching))
