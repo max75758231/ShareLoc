@@ -125,10 +125,13 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
     @Override
     public void onLocationChanged(final String latitude, final String longitude, final String address) {
         Bundle args = new Bundle();
+
         args.putString(getString(R.string.all_latitude_intent_key), latitude);
         args.putString(getString(R.string.all_longitude_intent_key), longitude);
         args.putString(getString(R.string.all_address_intent_key), address);
+        
         fragmentLocation.setArguments(args);
         navigator.navigateToFragment(fragmentLocation);
+        navigationView.setSelectedItemId(R.id.bottom_navigation_location);
     }
 }
