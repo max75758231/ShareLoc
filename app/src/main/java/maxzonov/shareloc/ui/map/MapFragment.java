@@ -176,7 +176,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         latitude = String.valueOf(marker.getPosition().latitude);
         longitude = String.valueOf(marker.getPosition().longitude);
 
-        mapPresenter.getAddressAndSetTitle(latitude, longitude, marker);
+        mapPresenter.getAddressAndSetTitle(latitude, longitude, marker, getActivity());
     }
 
     @OnClick(R.id.btn_bottom_sheet)

@@ -83,7 +83,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
             String googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
             String yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);
             textViewGoogleLink.setText(googleLink);
-            textViewGoogleLink.setText(yandexMapsLink);
+            textViewYandexLink.setText(yandexMapsLink);
         }
     }
 
