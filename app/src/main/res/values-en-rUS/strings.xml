@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_address_error">Address not found</string>
+    <string name="all_exit_button">Click the back button again to exit</string>
+    <string name="bn_location">Info</string>
+    <string name="bn_map">Map</string>
+    <string name="bottom_sheet_i_am_here">I\'m here</string>
+    <string name="bottom_sheet_i_am_here_send">Look where I am</string>
+    <string name="bottom_sheet_listener_error">Impossible to go to info screen</string>
+    <string name="bottom_sheet_yes_button">Yes</string>
+    <string name="location_geolocation_error">Geolocation not found</string>
+    <string name="location_get_button">Get my location</string>
+    <string name="location_permission_denied">You have to give the GPS permission</string>
+    <string name="location_tv_address">Address:</string>
+    <string name="location_tv_coords">Coords:</string>
+    <string name="location_tv_latitude">Latitude:</string>
+    <string name="location_tv_longitude">Longitude:</string>
+    <string name="location_tv_message">Message:</string>
+    <string name="location_tv_send">Send:</string>
+    <string name="all_share_title">Share via</string>
+    <string name="location_tv_yandex">Yandex.Maps:</string>
+    <string name="menu_map_hybrid">Hybrid</string>
+    <string name="menu_map_map">Map</string>
+    <string name="menu_map_satellite">Satellite</string>
+    <string name="notification_gps_searching">Search for gps satellites</string>
+    <string name="prefs_message_default">I\'m here</string>
+    <string name="settings_tv_message">Message text</string>
+    <string name="toolbar_settings_title">Настройки</string>
+</resources>

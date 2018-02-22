@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShareLoc</string>
+    <string name="app_name" translatable="false">ShareLoc</string>
 
     <!-- General strings -->
 
@@ -10,16 +10,16 @@
 
     <string name="toolbar_settings_title">Settings</string>
 
-    <string name="all_share_title">Share via</string>
+    <string name="all_share_title">Отправить с помощью</string>
 
-    <string name="all_google_maps_link">maps.google.com/maps?q=loc:%1$s,%2$s</string>
-    <string name="all_yandex_maps_link">maps.yandex.ru/?text=%1$s,%2$s</string>
+    <string name="all_google_maps_link" translatable="false">maps.google.com/maps?q=loc:%1$s,%2$s</string>
+    <string name="all_yandex_maps_link" translatable="false">maps.yandex.ru/?text=%1$s,%2$s</string>
 
     <string name="all_address_error">Адрес не найден</string>
 
-    <string name="all_latitude_intent_key">latitude</string>
-    <string name="all_longitude_intent_key">longitude</string>
-    <string name="all_address_intent_key">address</string>
+    <string name="all_latitude_intent_key" translatable="false">latitude</string>
+    <string name="all_longitude_intent_key" translatable="false">longitude</string>
+    <string name="all_address_intent_key" translatable="false">address</string>
 
     <string name="all_exit_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
 
@@ -33,7 +33,7 @@
     <string name="location_tv_send">Отправить:</string>
     <string name="location_tv_address">Адрес:</string>
     <string name="location_tv_message">Сообщение:</string>
-    <string name="location_tv_google">Google Maps:</string>
+    <string name="location_tv_google" translatable="false">Google Maps:</string>
     <string name="location_tv_yandex">Яндекс.Карты:</string>
 
     <string name="location_permission_denied">Требуется разрешение на получение местоположения</string>
@@ -53,20 +53,22 @@
 
     <!-- Settings -->
 
-    <string name="settings_message_key">message</string>
+    <string name="settings_message_key" translatable="false">message</string>
     <string name="settings_tv_message">Текст сообщения</string>
 
     <!-- SharedPreferences -->
 
-    <string name="prefs_message_key">message</string>
-    <string name="prefs_latitude_key">latitude</string>
-    <string name="prefs_longitude_key">longitude</string>
+    <string name="prefs_message_key" translatable="false">message</string>
+    <string name="prefs_latitude_key" translatable="false">latitude</string>
+    <string name="prefs_longitude_key" translatable="false">longitude</string>
 
-    <string name="prefs_message_default">Отправляю тебе свою геолокацию.</string>
-    <string name="prefs_latitude_default">0.0</string>
-    <string name="prefs_longitude_default">0.0</string>
+    <string name="prefs_message_default">Я нахожусь здесь</string>
+    <string name="prefs_latitude_default" translatable="false">0.0</string>
+    <string name="prefs_longitude_default" translatable="false">0.0</string>
 
     <!-- Google Geo API key -->
 
-    <string name="manifest_google_geo_api_key">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
+    <string name="manifest_google_geo_api_key" translatable="false">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
