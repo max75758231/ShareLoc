@@ -111,12 +111,12 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         googleMap.getUiSettings().setCompassEnabled(true);
 
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
+                .position(new LatLng(makeDouble(latitude), makeDouble(longitude)))
                 .draggable(true).title(address));
 
         CameraPosition cameraPosition =
                 CameraPosition.builder()
-                        .target(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)))
+                        .target(new LatLng(makeDouble(latitude), makeDouble(longitude)))
                         .zoom(15)
                         .bearing(0)
                         .tilt(45)
@@ -214,5 +214,9 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     public void showAndRefreshAddressInMarker(String address, Marker marker) {
         this.address = address;
         marker.setTitle(address);
+    }
+
+    private double makeDouble(String coord) {
+        return Double.parseDouble(coord);
     }
 }

@@ -9,12 +9,12 @@ import maxzonov.shareloc.di.module.AppModule;
 import maxzonov.shareloc.di.module.NavigatorModule;
 
 @Singleton
-@Component(modules = {
+@Component
+        (modules = {
                 AppModule.class,
                 LocationFragmentModule.class,
                 MapFragmentModule.class
-        }
-)
+        })
 public interface AppComponent {
     ScreensComponent screensComponent(NavigatorModule navigatorModule);
 }
