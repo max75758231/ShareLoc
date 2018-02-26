@@ -10,11 +10,11 @@ public class PreferencesHelper {
 
     private SharedPreferences preferences;
 
-    public PreferencesHelper(String key, Context context) {
+    public PreferencesHelper(Context context, String key) {
          preferences = context.getSharedPreferences(key, Context.MODE_PRIVATE);
     }
 
-    public String readFromPrefs(String key, Context context) {
+    public String readFromPrefs(Context context, String key) {
         preferences = context.getSharedPreferences(key, Context.MODE_PRIVATE);
         Resources res = context.getResources();
 
@@ -35,6 +35,6 @@ public class PreferencesHelper {
     public void writeToPrefs(String key, String value) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
-        editor.apply();
+        editor.commit();
     }
 }

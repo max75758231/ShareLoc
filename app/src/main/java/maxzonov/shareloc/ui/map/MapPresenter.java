@@ -26,17 +26,17 @@ public class MapPresenter extends MvpPresenter<MapView> {
     void getAddress(Context context, String latitude, String longitude) {
         geocoder = new Geocoder(context, Locale.getDefault());
 
-        requestAddressFromNetwork(latitude, longitude, context);
+        requestAddressFromNetwork(context, latitude, longitude);
 
         getViewState().showAddressInMarker(address);
     }
 
-    void getAddressAndSetTitle(String latitude, String longitude, Marker marker, Context context) {
-        requestAddressFromNetwork(latitude, longitude, context);
+    void getAddressAndSetTitle(Context context, String latitude, String longitude, Marker marker) {
+        requestAddressFromNetwork(context, latitude, longitude);
         getViewState().showAndRefreshAddressInMarker(address, marker);
     }
 
-    private void requestAddressFromNetwork(String latitude, String longitude, Context context) {
+    private void requestAddressFromNetwork(Context context, String latitude, String longitude) {
         try {
             if (geocoder == null) {
                 geocoder = new Geocoder(context, Locale.getDefault());

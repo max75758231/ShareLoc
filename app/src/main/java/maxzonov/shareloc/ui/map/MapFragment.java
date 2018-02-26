@@ -126,13 +126,15 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private void initSharedPreferences() {
 
-        PreferencesHelper prefsHelperLatitude = new PreferencesHelper(getString(R.string.prefs_latitude_key), getActivity());
-        PreferencesHelper prefsHelperLongitude = new PreferencesHelper(getString(R.string.prefs_longitude_key), getActivity());
+        PreferencesHelper prefsHelperLatitude = new PreferencesHelper(getActivity(),
+                getString(R.string.prefs_latitude_key));
+        PreferencesHelper prefsHelperLongitude = new PreferencesHelper(getActivity(),
+                getString(R.string.prefs_longitude_key));
 
-        latitude = prefsHelperLatitude.readFromPrefs(getString(R.string.prefs_latitude_key),
-                getActivity());
-        longitude = prefsHelperLongitude.readFromPrefs(getString(R.string.prefs_longitude_key),
-                getActivity());
+        latitude = prefsHelperLatitude.readFromPrefs(getActivity(),
+                getString(R.string.prefs_latitude_key));
+        longitude = prefsHelperLongitude.readFromPrefs(getActivity(),
+                getString(R.string.prefs_longitude_key));
     }
 
     @Override
@@ -176,7 +178,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         latitude = String.valueOf(marker.getPosition().latitude);
         longitude = String.valueOf(marker.getPosition().longitude);
 
-        mapPresenter.getAddressAndSetTitle(latitude, longitude, marker, getActivity());
+        mapPresenter.getAddressAndSetTitle(getActivity(), latitude, longitude, marker);
     }
 
     @OnClick(R.id.btn_bottom_sheet)

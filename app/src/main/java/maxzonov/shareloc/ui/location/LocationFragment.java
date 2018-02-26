@@ -59,7 +59,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_location_info, container, false);
+        view = inflater.inflate(R.layout.fragment_location, container, false);
         ButterKnife.bind(this, view);
 
         setupSharedPreferences();

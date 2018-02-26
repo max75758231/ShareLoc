@@ -42,8 +42,8 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
 
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        prefsHelperLatitude = new PreferencesHelper(res.getString(R.string.prefs_latitude_key), context);
-        prefsHelperLongitude = new PreferencesHelper(res.getString(R.string.prefs_longitude_key), context);
+        prefsHelperLatitude = new PreferencesHelper(context, res.getString(R.string.prefs_latitude_key));
+        prefsHelperLongitude = new PreferencesHelper(context, res.getString(R.string.prefs_longitude_key));
 
         showNotification();
         getLocation();
