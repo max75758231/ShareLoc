@@ -1,13 +1,20 @@
 package maxzonov.shareloc.ui.settings;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import maxzonov.shareloc.R;
+import maxzonov.shareloc.utils.LocaleManager;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(LocaleManager.setLocale(context));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

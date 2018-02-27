@@ -1,5 +1,6 @@
 package maxzonov.shareloc.preferences;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -32,6 +33,7 @@ public class PreferencesHelper {
         return result;
     }
 
+    @SuppressLint("ApplySharedPref")
     public void writeToPrefs(String key, String value) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);

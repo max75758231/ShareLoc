@@ -25,5 +25,5 @@
     <string name="notification_gps_searching">Search for gps satellites</string>
     <string name="prefs_message_default">I\'m here</string>
     <string name="settings_tv_message">Message text</string>
-    <string name="toolbar_settings_title">Настройки</string>
+    <string name="settings_language_label">Language</string>
 </resources>

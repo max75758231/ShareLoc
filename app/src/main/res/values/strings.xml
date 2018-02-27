@@ -55,20 +55,26 @@
 
     <string name="settings_message_key" translatable="false">message</string>
     <string name="settings_tv_message">Текст сообщения</string>
+    <string name="settings_language_label">Язык</string>
+
+    <string name="prefs_language_en_label" translatable="false">English</string>
+    <string name="prefs_language_ru_label" translatable="false">Русский</string>
 
     <!-- SharedPreferences -->
 
     <string name="prefs_message_key" translatable="false">message</string>
     <string name="prefs_latitude_key" translatable="false">latitude</string>
     <string name="prefs_longitude_key" translatable="false">longitude</string>
+    <string name="prefs_language_key" translatable="false">language</string>
 
     <string name="prefs_message_default">Я нахожусь здесь</string>
     <string name="prefs_latitude_default" translatable="false">0.0</string>
     <string name="prefs_longitude_default" translatable="false">0.0</string>
 
+    <string name="prefs_language_en_value" translatable="false">en</string>
+    <string name="prefs_language_ru_value" translatable="false">ru</string>
+
     <!-- Google Geo API key -->
 
     <string name="manifest_google_geo_api_key" translatable="false">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
 </resources>

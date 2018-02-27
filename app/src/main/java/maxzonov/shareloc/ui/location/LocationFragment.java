@@ -167,12 +167,16 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         textViewMessage.setText(preferences.getString(getString(R.string.prefs_message_key),
                 getString(R.string.prefs_message_default)));
+        Log.d("myLog", preferences.getString(getString(R.string.prefs_language_key), getString(R.string.prefs_language_ru_value)));
 
         preferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        String langKey = getString(R.string.prefs_language_key);
+        String langDefault = getString(R.string.prefs_language_ru_value);
+
         if (key.equals(getString(R.string.prefs_message_key))) {
             textViewMessage.setText(sharedPreferences.getString(key,
                     getString(R.string.prefs_message_default)));
@@ -182,6 +186,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         } else if (key.equals(getString(R.string.prefs_longitude_key))) {
             textViewLongitude.setText(sharedPreferences.getString(key,
                     getString(R.string.prefs_longitude_default)));
+        } else if (key.equals(getString(R.string.prefs_language_key))) {
+            LocaleManager
+                    .setNewLocale(getActivity(), sharedPreferences.getString(langKey, langDefault));
+
+            Intent i = new Intent(getActivity(), StartActivity.class);
+            startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 }

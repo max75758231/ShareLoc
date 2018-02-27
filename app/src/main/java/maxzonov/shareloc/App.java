@@ -6,6 +6,7 @@ import android.content.Context;
 import maxzonov.shareloc.di.component.AppComponent;
 import maxzonov.shareloc.di.component.DaggerAppComponent;
 import maxzonov.shareloc.di.module.AppModule;
+import maxzonov.shareloc.utils.LocaleManager;
 
 public class App extends Application {
 
@@ -13,6 +14,11 @@ public class App extends Application {
 
     public static AppComponent getAppComponent(Context context) {
         return ((App) context.getApplicationContext()).appComponent;
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(LocaleManager.setLocale(context));
     }
 
     @Override

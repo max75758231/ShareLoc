@@ -6,4 +6,11 @@
         android:title="@string/settings_tv_message"
         android:key="@string/settings_message_key"/>
 
+    <ListPreference
+        android:defaultValue="@string/prefs_language_ru_value"
+        android:entries="@array/pref_language_option_labels"
+        android:entryValues="@array/pref_language_option_values"
+        android:key="@string/prefs_language_key"
+        android:title="@string/settings_language_label" />
+
 </PreferenceScreen>

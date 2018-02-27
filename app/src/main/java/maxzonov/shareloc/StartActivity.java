@@ -1,5 +1,6 @@
 package maxzonov.shareloc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import maxzonov.shareloc.di.module.NavigatorModule;
 import maxzonov.shareloc.navigation.AppNavigator;
 import maxzonov.shareloc.ui.map.OnLocationChangedListener;
 import maxzonov.shareloc.ui.settings.SettingsActivity;
+import maxzonov.shareloc.utils.LocaleManager;
 
 public class StartActivity extends AppCompatActivity implements OnLocationChangedListener {
 
@@ -33,6 +35,11 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     private boolean isMapFragmentVisible = false;
     private boolean isBackButtonClicked = false;
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(LocaleManager.setLocale(context));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
