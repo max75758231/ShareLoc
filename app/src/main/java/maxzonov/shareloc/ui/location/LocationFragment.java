@@ -8,22 +8,26 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
-import butterknife.BindString;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import maxzonov.shareloc.R;
+import maxzonov.shareloc.StartActivity;
+import maxzonov.shareloc.utils.LocaleManager;
 
 public class LocationFragment extends MvpAppCompatFragment implements LocationView,
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -57,7 +61,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_location, container, false);
         ButterKnife.bind(this, view);
@@ -76,12 +80,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
             String latitude = args.getString(getString(R.string.all_latitude_intent_key));
             String longitude = args.getString(getString(R.string.all_longitude_intent_key));
             String address = args.getString(getString(R.string.all_address_intent_key));
+            String googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
+            String yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);
 
             textViewLatitude.setText(latitude);
             textViewLongitude.setText(longitude);
             textViewAddress.setText(address);
-            String googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
-            String yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);
             textViewGoogleLink.setText(googleLink);
             textViewYandexLink.setText(yandexMapsLink);
         }
@@ -93,10 +97,11 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION_PERMISSION_ID);
         } else {
             locationPresenter.getLocationClicked(getActivity(), fusedLocationClient);
@@ -116,7 +121,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                     Toast.makeText(view.getContext(), getString(R.string.location_permission_denied),
                             Toast.LENGTH_SHORT).show();
                 }
-                return;
         }
     }
 
@@ -144,8 +148,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         String googleLink = "";
         String yandexMapsLink = "";
 
-        if (!latitude.equals(getString(R.string.location_geolocation_error)) &&
-                !longitude.equals(getString(R.string.location_geolocation_error))) {
+        if (!latitude.equals(getString(R.string.location_geolocation_error))
+                && !longitude.equals(getString(R.string.location_geolocation_error))) {
 
             googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
             yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);
@@ -167,7 +171,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         textViewMessage.setText(preferences.getString(getString(R.string.prefs_message_key),
                 getString(R.string.prefs_message_default)));
-        Log.d("myLog", preferences.getString(getString(R.string.prefs_language_key), getString(R.string.prefs_language_ru_value)));
 
         preferences.registerOnSharedPreferenceChangeListener(this);
     }

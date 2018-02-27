@@ -3,6 +3,7 @@ package maxzonov.shareloc.ui.map;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import butterknife.BindString;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -24,9 +29,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import butterknife.BindString;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
@@ -38,7 +40,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private GoogleMap googleMap;
 
-    private View mView;
+    private View view;
 
     private String latitude, longitude, address;
 
@@ -62,25 +64,25 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        mView = inflater.inflate(R.layout.fragment_map, container, false);
-        ButterKnife.bind(this, mView);
+        view = inflater.inflate(R.layout.fragment_map, container, false);
+        ButterKnife.bind(this, view);
 
-        View bottomSheet = mView.findViewById(R.id.bottom_sheet);
+        View bottomSheet = view.findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         sheetBehavior.setPeekHeight(0);
-        return mView;
+        return view;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MapView mapView = mView.findViewById(R.id.map_view);
+        MapView mapView = this.view.findViewById(R.id.map_view);
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();
@@ -194,8 +196,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     @OnClick(R.id.btn_bottom_sheet_share)
     void onBottomSheetShareClicked() {
-        String sendInfo = getString(R.string.bottom_sheet_i_am_here_send) + "\n" +
-                stringGoogle + " " + getString(R.string.all_google_maps_link, latitude, longitude) + "\n"
+        String sendInfo = getString(R.string.bottom_sheet_i_am_here_send) + "\n"
+                + stringGoogle + " " + getString(R.string.all_google_maps_link, latitude, longitude) + "\n"
                 + stringYandex + " " + getString(R.string.all_yandex_maps_link, latitude, longitude);
 
         Intent intent = new Intent();

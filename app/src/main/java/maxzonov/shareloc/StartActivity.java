@@ -59,10 +59,10 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
             navigator.navigateToFragment(fragmentLocation);
         }
 
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
             case R.id.bottom_navigation_map:
@@ -115,7 +115,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
     @Override
     public void onBackPressed() {
 
-        int BACK_PRESSED_DELAY = 2000;
+        int backPressedDelay = 2000;
 
         if (isBackButtonClicked) {
             finish();
@@ -126,7 +126,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
         Toast.makeText(this, getString(R.string.all_exit_button), Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(() -> isBackButtonClicked = false, BACK_PRESSED_DELAY);
+        new Handler().postDelayed(() -> isBackButtonClicked = false, backPressedDelay);
     }
 
     @Override

@@ -2,10 +2,11 @@ package maxzonov.shareloc.di.module;
 
 import android.support.v4.app.Fragment;
 
-import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
+
+import javax.inject.Named;
+
 import maxzonov.shareloc.ui.location.LocationFragment;
 
 @Module
