@@ -12,6 +12,8 @@ public class App extends Application {
 
     private AppComponent appComponent;
 
+    private static final String DEFAULT_LANGUAGE_RU = "ru";
+
     public static AppComponent getAppComponent(Context context) {
         return ((App) context.getApplicationContext()).appComponent;
     }
@@ -19,7 +21,7 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(LocaleManager
-                .onAttach(context, getString(R.string.prefs_language_ru_value)));
+                .onAttach(context, DEFAULT_LANGUAGE_RU));
     }
 
     @Override
