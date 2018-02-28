@@ -55,26 +55,28 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
-        initSharedPreferences();
-        if (!latitude.equals(getString(R.string.prefs_latitude_default))
-                && !longitude.equals(getString(R.string.prefs_longitude_default))) {
-            mapPresenter.getAddress(getActivity(), latitude, longitude);
-        }
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
+        initSharedPreferences();
+
+        if (!latitude.equals(getString(R.string.prefs_latitude_default))
+                && !longitude.equals(getString(R.string.prefs_longitude_default))) {
+            mapPresenter.getAddress(getActivity(), latitude, longitude);
+        }
+
         view = inflater.inflate(R.layout.fragment_map, container, false);
         ButterKnife.bind(this, view);
 
         View bottomSheet = view.findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomSheet);
-
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         sheetBehavior.setPeekHeight(0);
+
         return view;
     }
 
@@ -112,17 +114,31 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
 
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(makeDouble(latitude), makeDouble(longitude)))
-                .draggable(true).title(address));
+        CameraPosition cameraPosition;
 
-        CameraPosition cameraPosition =
-                CameraPosition.builder()
-                        .target(new LatLng(makeDouble(latitude), makeDouble(longitude)))
-                        .zoom(15)
-                        .bearing(0)
-                        .tilt(45)
-                        .build();
+        if (latitude.equals(getString(R.string.prefs_latitude_default))
+                && longitude.equals(getString(R.string.prefs_longitude_default))) {
+
+            cameraPosition = CameraPosition.builder()
+                    .target(new LatLng(makeDouble(latitude), makeDouble(longitude)))
+                    .zoom(0)
+                    .bearing(0)
+                    .tilt(45)
+                    .build();
+        } else {
+
+            cameraPosition = CameraPosition.builder()
+                    .target(new LatLng(makeDouble(latitude), makeDouble(longitude)))
+                    .zoom(15)
+                    .bearing(0)
+                    .tilt(45)
+                    .build();
+
+            googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(makeDouble(latitude), makeDouble(longitude)))
+                    .draggable(true).title(address));
+        }
+
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
