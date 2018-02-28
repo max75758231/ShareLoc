@@ -106,8 +106,12 @@
 
                 <ImageView
                     android:id="@+id/iv_location_share"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
                     app:srcCompat="@drawable/ic_share_black_24dp"/>
             </LinearLayout>
 
@@ -186,6 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="@string/all_google_maps_link"
+                    android:autoLink="all"
                     style="@style/BlackText"/>
             </LinearLayout>
 
@@ -212,6 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="@string/all_yandex_maps_link"
+                    android:autoLink="all"
                     style="@style/BlackText"/>
             </LinearLayout>
         </LinearLayout>
