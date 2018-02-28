@@ -1,6 +1,7 @@
 package maxzonov.shareloc.ui.location;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.StartActivity;
@@ -95,32 +97,20 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         getLocation();
     }
 
+    @SuppressLint("CheckResult")
     private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_LOCATION_PERMISSION_ID);
-        } else {
-            locationPresenter.getLocationClicked(getActivity(), fusedLocationClient);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-
-        switch (requestCode) {
-            case REQUEST_LOCATION_PERMISSION_ID:
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getLocation();
-                } else {
-                    Toast.makeText(view.getContext(), getString(R.string.location_permission_denied),
-                            Toast.LENGTH_SHORT).show();
-                }
-        }
+        RxPermissions rxPermissions = new RxPermissions(getActivity());
+        rxPermissions
+                .request(Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe(granted -> {
+                   if (granted) {
+                       locationPresenter.getLocationClicked(getActivity(), fusedLocationClient);
+                   } else {
+                       Toast.makeText(view.getContext(), getString(R.string.location_permission_denied),
+                               Toast.LENGTH_SHORT).show();
+                   }
+                });
     }
 
     @OnClick(R.id.iv_location_share)

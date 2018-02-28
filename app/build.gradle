@@ -28,12 +28,14 @@ android {
 }
 
 ext {
-    supportLibraryVersion = "27.0.2"
+    butterknifeVersion = "8.6.0"
     constraintLayoutVersion = "1.0.2"
+    daggerVersion = "2.13"
     gmsVersion = "11.8.0"
     moxyVersion = "1.5.3"
-    butterknifeVersion = "8.6.0"
-    daggerVersion = "2.13"
+    rxJavaVersion = "2.1.1"
+    rxPermissionVersion = "0.9.5@aar"
+    supportLibraryVersion = "27.0.2"
 }
 
 dependencies {
@@ -60,4 +62,7 @@ dependencies {
 
     implementation "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rxPermissionVersion"
 }
