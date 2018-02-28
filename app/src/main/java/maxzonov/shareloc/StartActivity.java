@@ -38,7 +38,7 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     @Override
     protected void attachBaseContext(Context context) {
-        super.attachBaseContext(LocaleManager.setLocale(context));
+        super.attachBaseContext(LocaleManager.onAttach(context));
     }
 
     @Override

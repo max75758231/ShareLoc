@@ -60,6 +60,9 @@
     <string name="prefs_language_en_label" translatable="false">English</string>
     <string name="prefs_language_ru_label" translatable="false">Русский</string>
 
+    <string name="prefs_language_en_country_code">US</string>
+    <string name="prefs_language_ru_country_code">RU</string>
+
     <!-- SharedPreferences -->
 
     <string name="prefs_message_key" translatable="false">message</string>

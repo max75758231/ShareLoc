@@ -14,7 +14,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context context) {
-        super.attachBaseContext(LocaleManager.setLocale(context));
+        super.attachBaseContext(LocaleManager.onAttach(context));
     }
 
     @Override

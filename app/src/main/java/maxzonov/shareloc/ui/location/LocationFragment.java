@@ -189,9 +189,9 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         } else if (key.equals(getString(R.string.prefs_longitude_key))) {
             textViewLongitude.setText(sharedPreferences.getString(key,
                     getString(R.string.prefs_longitude_default)));
-        } else if (key.equals(getString(R.string.prefs_language_key))) {
+        } else if (key.equals(langKey)) {
             LocaleManager
-                    .setNewLocale(getActivity(), sharedPreferences.getString(langKey, langDefault));
+                    .setLocale(getActivity(), sharedPreferences.getString(langKey, langDefault));
 
             Intent i = new Intent(getActivity(), StartActivity.class);
             startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));

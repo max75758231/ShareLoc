@@ -18,7 +18,8 @@ public class App extends Application {
 
     @Override
     protected void attachBaseContext(Context context) {
-        super.attachBaseContext(LocaleManager.setLocale(context));
+        super.attachBaseContext(LocaleManager
+                .onAttach(context, getString(R.string.prefs_language_ru_value)));
     }
 
     @Override
