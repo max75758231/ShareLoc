@@ -28,27 +28,26 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
     @Override
     protected String doInBackground(Location... locations) {
         final Context context = this.context.get();
+
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         Location location = locations[0];
 
         List<Address> addresses = null;
         String resultMessage = "";
+        String onAddressErrorMessage = context.getString(R.string.all_address_error);
 
         try {
-            addresses = geocoder.getFromLocation(
-                    location.getLatitude(),
-                    location.getLongitude(),
-                    1);
+            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
         } catch (IOException ioException) {
-            resultMessage = context.getString(R.string.all_address_error);
+            resultMessage = onAddressErrorMessage;
             ioException.printStackTrace();
         } catch (IllegalArgumentException illegalArgException) {
-            resultMessage = context.getString(R.string.all_address_error);
+            resultMessage = onAddressErrorMessage;
             illegalArgException.printStackTrace();
         } finally {
             if (addresses == null || addresses.size() == 0) {
                 if (resultMessage.isEmpty()) {
-                    resultMessage = context.getString(R.string.all_address_error);
+                    resultMessage = onAddressErrorMessage;
                 }
             } else {
                 Address address = addresses.get(0);
