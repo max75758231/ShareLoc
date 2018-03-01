@@ -1,5 +1,6 @@
 package maxzonov.shareloc.ui.map;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,6 +52,24 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     @BindString(R.string.location_tv_google) String stringGoogle;
     @BindString(R.string.location_tv_yandex) String stringYandex;
 
+    private Activity activity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+        }
+
+        try {
+            listener = (OnLocationChangedListener) context;
+        } catch (ClassCastException e) {
+            listener = null;
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +85,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
         if (!latitude.equals(getString(R.string.prefs_latitude_default))
                 && !longitude.equals(getString(R.string.prefs_longitude_default))) {
-            mapPresenter.getAddress(getActivity(), latitude, longitude);
+            mapPresenter.getAddress(activity, latitude, longitude);
         }
 
         view = inflater.inflate(R.layout.fragment_map, container, false);
@@ -93,20 +112,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            listener = (OnLocationChangedListener) context;
-        } catch (ClassCastException e) {
-            listener = null;
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void onMapReady(GoogleMap googleMap) {
-        MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(activity);
 
         this.googleMap = googleMap;
 
@@ -144,14 +151,14 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private void initSharedPreferences() {
 
-        PreferencesHelper prefsHelperLatitude = new PreferencesHelper(getActivity(),
+        PreferencesHelper prefsHelperLatitude = new PreferencesHelper(activity,
                 getString(R.string.prefs_latitude_key));
-        PreferencesHelper prefsHelperLongitude = new PreferencesHelper(getActivity(),
+        PreferencesHelper prefsHelperLongitude = new PreferencesHelper(activity,
                 getString(R.string.prefs_longitude_key));
 
-        latitude = prefsHelperLatitude.readFromPrefs(getActivity(),
+        latitude = prefsHelperLatitude.readFromPrefs(activity,
                 getString(R.string.prefs_latitude_key));
-        longitude = prefsHelperLongitude.readFromPrefs(getActivity(),
+        longitude = prefsHelperLongitude.readFromPrefs(activity,
                 getString(R.string.prefs_longitude_key));
     }
 
@@ -196,7 +203,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         latitude = String.valueOf(marker.getPosition().latitude);
         longitude = String.valueOf(marker.getPosition().longitude);
 
-        mapPresenter.getAddressAndSetTitle(getActivity(), latitude, longitude, marker);
+        mapPresenter.getAddressAndSetTitle(activity, latitude, longitude, marker);
     }
 
     @OnClick(R.id.btn_bottom_sheet)
@@ -205,7 +212,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         if (listener != null) {
             listener.onLocationChanged(latitude, longitude, address);
         } else {
-            Toast.makeText(getActivity(), getString(R.string.bottom_sheet_listener_error),
+            Toast.makeText(activity, getString(R.string.bottom_sheet_listener_error),
                     Toast.LENGTH_SHORT).show();
         }
     }

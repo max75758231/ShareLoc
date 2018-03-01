@@ -2,13 +2,13 @@ package maxzonov.shareloc.ui.location;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,12 +53,23 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     private View view;
 
+    private Activity activity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
     }
 
     @Override
@@ -100,12 +111,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @SuppressLint("CheckResult")
     private void getLocation() {
 
-        RxPermissions rxPermissions = new RxPermissions(getActivity());
+        RxPermissions rxPermissions = new RxPermissions(activity);
         rxPermissions
                 .request(Manifest.permission.ACCESS_FINE_LOCATION)
                 .subscribe(granted -> {
                    if (granted) {
-                       locationPresenter.getLocationClicked(getActivity(), fusedLocationClient);
+                       locationPresenter.getLocationClicked(activity, fusedLocationClient);
                    } else {
                        Toast.makeText(view.getContext(), getString(R.string.location_permission_denied),
                                Toast.LENGTH_SHORT).show();
@@ -152,12 +163,23 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     public void onDestroy() {
         super.onDestroy();
 
-        PreferenceManager.getDefaultSharedPreferences(getActivity())
+        PreferenceManager.getDefaultSharedPreferences(activity)
                 .unregisterOnSharedPreferenceChangeListener(this);
+
+        if (activity != null)
+            activity = null;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        if (activity != null)
+            activity = null;
     }
 
     private void setupSharedPreferences() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         textViewMessage.setText(preferences.getString(getString(R.string.prefs_message_key),
                 getString(R.string.prefs_message_default)));
 
@@ -180,9 +202,9 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                     getString(R.string.prefs_longitude_default)));
         } else if (key.equals(langKey)) {
             LocaleManager
-                    .setLocale(getActivity(), sharedPreferences.getString(langKey, langDefault));
+                    .setLocale(activity, sharedPreferences.getString(langKey, langDefault));
 
-            Intent i = new Intent(getActivity(), StartActivity.class);
+            Intent i = new Intent(activity, StartActivity.class);
             startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
