@@ -64,25 +64,30 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
 
                 new GetAddressClass(context, this).execute(lastLocation);
             } else {
-                String error = context.getString(R.string.location_geolocation_error);
-                getViewState().showInfo(error, error, error);
+                getViewState().onLocationResponseError();
             }
         });
     }
 
+    /**
+     * It's a response from the get address callback
+     */
     @Override
     public void onGetAddressCompleted(String address) {
         getViewState().showInfo(latitude, longitude, address);
         cancelNotification();
     }
 
+    /**
+     * Notification is displayed during the application is searching for satellites
+     */
     private void showNotification() {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, NOTIFICATION_FIND_LOCATION_CHANNEL)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(context.getString(R.string.app_name))
                         .setContentText(context.getString(R.string.notification_gps_searching))
-                        .setOngoing(true);
+                        .setOngoing(true); // immunity to clearing
         Notification notification = builder.build();
 
         notificationManager.notify(NOTIFICATION_FIND_LOCATION_ID,

@@ -160,6 +160,14 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     @Override
+    public void onLocationResponseError() {
+        String errorMessage = getString(R.string.location_no_geo_received_message);
+        textViewAddress.setText(errorMessage);
+        textViewLatitude.setText(errorMessage);
+        textViewLongitude.setText(errorMessage);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
 
