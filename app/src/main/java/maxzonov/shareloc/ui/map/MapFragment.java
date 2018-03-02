@@ -149,6 +149,22 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (activity != null)
+            activity = null;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        if (activity != null)
+            activity = null;
+    }
+
     private void initSharedPreferences() {
 
         PreferencesHelper prefsHelperLatitude = new PreferencesHelper(activity,
