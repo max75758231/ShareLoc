@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/toolbar_settings_title">
 
-    <EditTextPreference
-        android:defaultValue="@string/prefs_message_default"
-        android:title="@string/settings_tv_message"
-        android:key="@string/settings_message_key"/>
+    <PreferenceCategory
+        android:title="@string/settings_category_general_title">
 
-    <ListPreference
-        android:defaultValue="@string/prefs_language_ru_value"
-        android:entries="@array/pref_language_option_labels"
-        android:entryValues="@array/pref_language_option_values"
-        android:key="@string/prefs_language_key"
-        android:title="@string/settings_language_label" />
+        <ListPreference
+            android:defaultValue="@string/prefs_language_ru_value"
+            android:entries="@array/pref_language_option_labels"
+            android:entryValues="@array/pref_language_option_values"
+            android:key="@string/prefs_language_key"
+            android:title="@string/settings_language_label" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_category_message_title">
+
+        <EditTextPreference
+            android:defaultValue="@string/prefs_message_default"
+            android:title="@string/settings_tv_message"
+            android:key="@string/settings_message_key"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>
