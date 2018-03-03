@@ -17,6 +17,9 @@ import maxzonov.shareloc.R;
 
 public class GetAddressClass extends AsyncTask<Location, Void, String> {
 
+    /**
+     * Weak reference is a solution to the context memory leaks
+     */
     private WeakReference<Context> context;
     private final OnGetAddressCompleted listener;
 
@@ -33,21 +36,21 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
         Location location = locations[0];
 
         List<Address> addresses = null;
-        String resultMessage = "";
+        String resultAddress = "";
         String onAddressErrorMessage = context.getString(R.string.all_address_error);
 
         try {
             addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
         } catch (IOException ioException) {
-            resultMessage = onAddressErrorMessage;
+            resultAddress = onAddressErrorMessage;
             ioException.printStackTrace();
         } catch (IllegalArgumentException illegalArgException) {
-            resultMessage = onAddressErrorMessage;
+            resultAddress = onAddressErrorMessage;
             illegalArgException.printStackTrace();
         } finally {
             if (addresses == null || addresses.size() == 0) {
-                if (resultMessage.isEmpty()) {
-                    resultMessage = onAddressErrorMessage;
+                if (resultAddress.isEmpty()) {
+                    resultAddress = onAddressErrorMessage;
                 }
             } else {
                 Address address = addresses.get(0);
@@ -55,15 +58,19 @@ public class GetAddressClass extends AsyncTask<Location, Void, String> {
                 for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
                     addressParts.add(address.getAddressLine(i));
                 }
-                resultMessage = TextUtils.join("\n", addressParts);
+                resultAddress = TextUtils.join("\n", addressParts);
             }
         }
-        return resultMessage;
+        return resultAddress;
     }
 
+    /**
+     * Sending the result to LocationPresenter
+     * @param resultAddress Received response from geocoder
+     */
     @Override
-    protected void onPostExecute(String result) {
-        listener.onGetAddressCompleted(result);
-        super.onPostExecute(result);
+    protected void onPostExecute(String resultAddress) {
+        listener.onGetAddressCompleted(resultAddress);
+        super.onPostExecute(resultAddress);
     }
 }

@@ -33,6 +33,10 @@ public class PreferencesHelper {
         return result;
     }
 
+    /**
+     * There is using commit() instead of apply() because an app can be killed immediately,
+     * so apply() can be not finished
+     */
     @SuppressLint("ApplySharedPref")
     public void writeToPrefs(String key, String value) {
         SharedPreferences.Editor editor = preferences.edit();

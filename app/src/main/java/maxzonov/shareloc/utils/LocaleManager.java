@@ -1,5 +1,6 @@
 package maxzonov.shareloc.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -41,14 +42,24 @@ public class LocaleManager {
         return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
     }
 
+    /**
+     * There is using commit() instead of apply() because an app can be killed immediately,
+     * so apply() can be not finished
+     */
+    @SuppressLint("ApplySharedPref")
     private static void persist(Context context, String language) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putString(SELECTED_LANGUAGE, language);
-        editor.apply();
+        editor.commit();
     }
 
+    /**
+     * Method to update language on Android 7.0+
+     * @param language default language
+     * @return context with updated language
+     */
     @TargetApi(Build.VERSION_CODES.N)
     private static Context updateResources(Context context, String language) {
         Locale locale = new Locale(language);
@@ -61,6 +72,11 @@ public class LocaleManager {
         return context.createConfigurationContext(configuration);
     }
 
+    /**
+     * Method to update language on Android between 4.1 and 7.0
+     * @param language default language
+     * @return context with updated language
+     */
     @SuppressWarnings("deprecation")
     private static Context updateResourcesLegacy(Context context, String language) {
         Locale locale = null;

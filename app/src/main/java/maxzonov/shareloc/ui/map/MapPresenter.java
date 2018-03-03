@@ -31,6 +31,10 @@ public class MapPresenter extends MvpPresenter<MapView> {
         getViewState().showAddressInMarker(address);
     }
 
+    /**
+     * This method is called when the marker drag is ended
+     * @see MapFragment#onMarkerDragEnd(Marker)
+     */
     void getAddressAndSetTitle(Context context, String latitude, String longitude, Marker marker) {
         requestAddressFromNetwork(context, latitude, longitude);
         getViewState().showAndRefreshAddressInMarker(address, marker);

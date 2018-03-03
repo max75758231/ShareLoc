@@ -18,6 +18,9 @@ public class App extends Application {
         return ((App) context.getApplicationContext()).appComponent;
     }
 
+    /**
+     * Sets the persisted language
+     */
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(LocaleManager

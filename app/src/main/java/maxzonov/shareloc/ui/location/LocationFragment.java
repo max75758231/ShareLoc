@@ -35,8 +35,6 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     @InjectPresenter LocationPresenter locationPresenter;
 
-    private static final int REQUEST_LOCATION_PERMISSION_ID = 1;
-
     @BindView(R.id.tv_location_latitude_result) TextView textViewLatitude;
     @BindView(R.id.tv_location_longitude_result) TextView textViewLongitude;
     @BindView(R.id.tv_location_address_result) TextView textViewAddress;
@@ -148,8 +146,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         String googleLink = "";
         String yandexMapsLink = "";
 
-        if (!latitude.equals(getString(R.string.location_geolocation_error))
-                && !longitude.equals(getString(R.string.location_geolocation_error))) {
+        if (!latitude.equals(getString(R.string.location_no_geo_received_message))
+                && !longitude.equals(getString(R.string.location_no_geo_received_message))) {
 
             googleLink = getString(R.string.all_google_maps_link, latitude, longitude);
             yandexMapsLink = getString(R.string.all_yandex_maps_link, latitude, longitude);

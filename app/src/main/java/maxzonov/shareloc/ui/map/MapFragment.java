@@ -202,6 +202,10 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         }
     }
 
+    /**
+     * Users can move the marker with onDrag methods
+     */
+
     @Override
     public void onMarkerDragStart(Marker marker) {
         marker.hideInfoWindow();
@@ -257,7 +261,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         marker.setTitle(address);
     }
 
-    private double makeDouble(String coord) {
-        return Double.parseDouble(coord);
+    private double makeDouble(String coordinate) {
+        return Double.parseDouble(coordinate);
     }
 }

@@ -35,10 +35,13 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
     private NotificationManager notificationManager;
     private PreferencesHelper prefsHelperLatitude, prefsHelperLongitude;
 
-    void getLocationClicked(Context context, FusedLocationProviderClient fusedLocationClient) {
+    /**
+     * Location searching method
+     */
+    protected void getLocationClicked(Context context, FusedLocationProviderClient fusedLocation) {
         this.context = context;
         res = context.getResources();
-        this.fusedLocationClient = fusedLocationClient;
+        this.fusedLocationClient = fusedLocation;
 
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -49,7 +52,9 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
         getLocation();
     }
 
-    //Suppression caused by the fact that permission has been checked in LocationFragment
+    /**
+     * Suppression caused by the fact that permission has been checked in LocationFragment
+     */
     @SuppressLint("MissingPermission")
     private void getLocation() {
 

@@ -33,9 +33,16 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
 
     private AppNavigator navigator;
 
+    /**
+     * isMapFragmentVisible - boolean variable to handle lifecycle of activity
+     * isBackButtonClicked - boolean variable to handle double-clicked back button exit
+     */
     private boolean isMapFragmentVisible = false;
     private boolean isBackButtonClicked = false;
 
+    /**
+     * attachBaseContext method applies a previously persisted language
+     */
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(LocaleManager.onAttach(context));
@@ -129,6 +136,12 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
         new Handler().postDelayed(() -> isBackButtonClicked = false, backPressedDelay);
     }
 
+    /**
+     * Method that handle maps mark movement
+     * @param latitude - new latitude coordinate
+     * @param longitude new longitude coordinate
+     * @param address - new address by these coordinates
+     */
     @Override
     public void onLocationChanged(final String latitude, final String longitude, final String address) {
         Bundle args = new Bundle();
