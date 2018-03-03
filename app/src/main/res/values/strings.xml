@@ -8,7 +8,7 @@
 
     <string name="notification_gps_searching">Поиск спутников GPS</string>
 
-    <string name="toolbar_settings_title">Settings</string>
+    <string name="toolbar_settings_title">Настройки</string>
 
     <string name="all_share_title">Отправить с помощью</string>
 
@@ -37,7 +37,7 @@
     <string name="location_tv_yandex">Яндекс.Карты:</string>
 
     <string name="location_permission_denied">Требуется разрешение на получение местоположения</string>
-    <string name="location_geolocation_error">Геолокация не определена</string>
+    <string name="location_no_geo_received_message">Геолокация не определена</string>
 
     <!-- Map screen -->
 
@@ -56,12 +56,14 @@
     <string name="settings_message_key" translatable="false">message</string>
     <string name="settings_tv_message">Текст сообщения</string>
     <string name="settings_language_label">Язык</string>
+    <string name="settings_category_general_title">Общие настройки</string>
+    <string name="settings_category_message_title">Настройки сообщения</string>
 
     <string name="prefs_language_en_label" translatable="false">English</string>
     <string name="prefs_language_ru_label" translatable="false">Русский</string>
 
-    <string name="prefs_language_en_country_code">US</string>
-    <string name="prefs_language_ru_country_code">RU</string>
+    <string name="prefs_language_en_country_code" translatable="false">US</string>
+    <string name="prefs_language_ru_country_code" translatable="false">RU</string>
 
     <!-- SharedPreferences -->
 
@@ -77,7 +79,9 @@
     <string name="prefs_language_en_value" translatable="false">en</string>
     <string name="prefs_language_ru_value" translatable="false">ru</string>
 
-    <!-- Google Geo API key -->
+    <!-- Google Maps API key -->
 
-    <string name="manifest_google_geo_api_key" translatable="false">AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE</string>
+    <string name="manifest_google_geo_api_key" translatable="false">
+        AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE
+    </string>
 </resources>

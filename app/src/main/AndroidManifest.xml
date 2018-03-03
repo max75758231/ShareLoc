@@ -25,13 +25,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.settings.SettingsActivity"/>
+        <activity android:name=".ui.settings.SettingsActivity"
+            android:label="@string/toolbar_settings_title"/>
 
-        <!-- Google API key for using Google Maps -->
+        <!-- Google API key for using Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/manifest_google_geo_api_key"/>
 
     </application>
-
 </manifest>
