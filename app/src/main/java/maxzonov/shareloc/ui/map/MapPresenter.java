@@ -23,7 +23,7 @@ public class MapPresenter extends MvpPresenter<MapView> {
     private Geocoder geocoder;
     private List<Address> addresses;
 
-    void getAddress(Context context, String latitude, String longitude) {
+    protected void getAddress(Context context, String latitude, String longitude) {
         geocoder = new Geocoder(context, Locale.getDefault());
 
         requestAddressFromNetwork(context, latitude, longitude);
@@ -35,7 +35,7 @@ public class MapPresenter extends MvpPresenter<MapView> {
      * This method is called when the marker drag is ended
      * @see MapFragment#onMarkerDragEnd(Marker)
      */
-    void getAddressAndSetTitle(Context context, String latitude, String longitude, Marker marker) {
+    protected void getAddressAndSetTitle(Context context, String latitude, String longitude, Marker marker) {
         requestAddressFromNetwork(context, latitude, longitude);
         getViewState().showAndRefreshAddressInMarker(address, marker);
     }
