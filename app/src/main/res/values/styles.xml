@@ -15,7 +15,7 @@
 
     <style name="BlackBoldText" parent="BlackText">
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/textsize_all_16sp</item>
+        <item name="android:textSize">@dimen/all_textsize_16sp</item>
     </style>
 
 </resources>

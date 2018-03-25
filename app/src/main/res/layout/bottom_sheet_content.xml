@@ -11,8 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/bottom_sheet_i_am_here"
-        android:layout_marginLeft="@dimen/margin_bottom_sheet_8dp"
-        android:layout_marginStart="@dimen/margin_bottom_sheet_8dp"
+        android:layout_marginLeft="@dimen/map_bottom_sheet_spacing_8dp"
+        android:layout_marginStart="@dimen/map_bottom_sheet_spacing_8dp"
         android:layout_weight="10"
         style="@style/BlackText"/>
 

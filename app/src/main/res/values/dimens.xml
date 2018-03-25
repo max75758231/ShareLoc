@@ -1,22 +1,23 @@
 <resources>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- General dimens -->
 
     <dimen name="margin_activity_horizontal">16dp</dimen>
     <dimen name="margin_activity_vertical">24dp</dimen>
 
-    <!-- General dimens -->
-
-    <dimen name="textsize_all_16sp">16sp</dimen>
-    <dimen name="margin_all_for_bottom_nav_56dp">56dp</dimen>
+    <dimen name="bottom_nav_height">56dp</dimen>
 
     <!-- Location screen -->
 
-    <dimen name="width_location_tv_110dp">110dp</dimen>
-    <dimen name="margin_location_layouts_and_tv_16dp">16dp</dimen>
+    <dimen name="location_tv_width_110dp">110dp</dimen>
+    <dimen name="location_spacing_16dp">16dp</dimen>
 
     <!-- Map screen -->
 
-    <dimen name="margin_bottom_sheet_8dp">8dp</dimen>
+    <dimen name="map_bottom_sheet_spacing_8dp">8dp</dimen>
+
+    <!-- Font sizes -->
+
+    <dimen name="all_textsize_16sp">16sp</dimen>
 
 </resources>
