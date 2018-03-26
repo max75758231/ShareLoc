@@ -22,6 +22,8 @@ import butterknife.OnClick;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -158,6 +160,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     @Override
+    @StateStrategyType(SkipStrategy.class)
     public void onLocationResponseError() {
         String errorMessage = getString(R.string.location_no_geo_received_message);
         textViewAddress.setText(errorMessage);
