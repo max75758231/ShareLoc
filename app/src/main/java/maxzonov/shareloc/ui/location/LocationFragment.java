@@ -28,6 +28,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import butterknife.Unbinder;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.StartActivity;
 import maxzonov.shareloc.utils.LocaleManager;
@@ -48,6 +49,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @BindString(R.string.location_tv_google) String stringGoogle;
     @BindString(R.string.location_tv_yandex) String stringYandex;
     @BindString(R.string.all_share_title) String shareTitle;
+
+    private Unbinder unbinder;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -76,7 +79,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_location, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         setupSharedPreferences();
         
@@ -166,6 +169,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         textViewAddress.setText(errorMessage);
         textViewLatitude.setText(errorMessage);
         textViewLongitude.setText(errorMessage);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override

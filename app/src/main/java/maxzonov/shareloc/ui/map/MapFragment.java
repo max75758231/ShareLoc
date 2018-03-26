@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import butterknife.Unbinder;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
 
@@ -51,6 +52,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     @BindString(R.string.all_share_title) String shareTitle;
     @BindString(R.string.location_tv_google) String stringGoogle;
     @BindString(R.string.location_tv_yandex) String stringYandex;
+
+    private Unbinder unbinder;
 
     private Activity activity;
 
@@ -89,7 +92,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         }
 
         view = inflater.inflate(R.layout.fragment_map, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         View bottomSheet = view.findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -147,6 +150,12 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         }
 
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override
