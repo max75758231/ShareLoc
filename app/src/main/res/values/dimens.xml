@@ -2,8 +2,8 @@
 
     <!-- General dimens -->
 
-    <dimen name="margin_activity_horizontal">16dp</dimen>
-    <dimen name="margin_activity_vertical">24dp</dimen>
+    <dimen name="activity_horizontal_spacing_16dp">16dp</dimen>
+    <dimen name="activity_vertical_spacing_24dp">24dp</dimen>
 
     <dimen name="bottom_nav_height">56dp</dimen>
 
@@ -11,6 +11,8 @@
 
     <dimen name="location_tv_width_110dp">110dp</dimen>
     <dimen name="location_spacing_16dp">16dp</dimen>
+    <dimen name="location_iv_share_size">48dp</dimen>
+    <dimen name="location_iv_share_spacing_10dp">10dp</dimen>
 
     <!-- Map screen -->
 
