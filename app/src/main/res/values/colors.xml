@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3e4779</color>
     <color name="colorPrimaryDark">#313759</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="btnGetLocation_colorLightGray">#E3E3E3</color>
+    <color name="btnGetLocationRipple_colorGray">#A1A1A1</color>
 </resources>
