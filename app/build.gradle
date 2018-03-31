@@ -31,11 +31,11 @@ ext {
     butterknifeVersion = "8.6.0"
     constraintLayoutVersion = "1.0.2"
     daggerVersion = "2.13"
-    gmsVersion = "11.8.0"
+    gmsVersion = "12.0.1"
     moxyVersion = "1.5.3"
     rxJavaVersion = "2.1.1"
     rxPermissionVersion = "0.9.5@aar"
-    supportLibraryVersion = "27.0.2"
+    supportLibraryVersion = "27.1.0"
 }
 
 dependencies {
