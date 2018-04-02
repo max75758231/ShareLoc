@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -48,6 +50,8 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private BottomSheetBehavior sheetBehavior;
     private OnLocationChangedListener listener;
+
+    @BindView(R.id.map_bottom_sheet_layout) NestedScrollView bottomSheetLayout;
 
     @BindString(R.string.all_share_title) String shareTitle;
     @BindString(R.string.location_tv_google) String stringGoogle;
@@ -94,10 +98,12 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         view = inflater.inflate(R.layout.fragment_map, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        View bottomSheet = view.findViewById(R.id.bottom_sheet);
+        View bottomSheet = view.findViewById(R.id.map_bottom_sheet_layout);
         sheetBehavior = BottomSheetBehavior.from(bottomSheet);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         sheetBehavior.setPeekHeight(0);
+
+        bottomSheetLayout.setBackgroundResource(android.R.color.transparent);
 
         return view;
     }

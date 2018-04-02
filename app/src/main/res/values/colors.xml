@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3e4779</color>
-    <color name="colorPrimaryDark">#313759</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#FFC107</color>
 
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBottomNavigationDefault">#FAFAFA</color>
 
     <color name="btnGetLocation_colorLightGray">#E3E3E3</color>
     <color name="btnGetLocationRipple_colorGray">#A1A1A1</color>

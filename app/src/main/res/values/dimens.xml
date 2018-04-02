@@ -9,17 +9,18 @@
 
     <!-- Location screen -->
 
-    <dimen name="location_tv_width_110dp">110dp</dimen>
+    <dimen name="location_tv_width">110dp</dimen>
     <dimen name="location_spacing_16dp">16dp</dimen>
     <dimen name="location_iv_share_size">48dp</dimen>
     <dimen name="location_iv_share_spacing_10dp">10dp</dimen>
     <dimen name="location_btn_get_corners_radius">10dp</dimen>
     <dimen name="location_btn_get_height">40dp</dimen>
-    <dimen name="location_btn_spacing">16dp</dimen>
+    <dimen name="location_btn_spacing_16dp">16dp</dimen>
 
     <!-- Map screen -->
 
     <dimen name="map_bottom_sheet_spacing_8dp">8dp</dimen>
+    <dimen name="map_bottom_sheet_radius">20dp</dimen>
 
     <!-- Font sizes -->
 
