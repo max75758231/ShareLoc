@@ -51,6 +51,9 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     private BottomSheetBehavior sheetBehavior;
     private OnLocationChangedListener listener;
 
+    private PreferencesHelper prefsHelperLatitude;
+    private PreferencesHelper prefsHelperLongitude;
+
     @BindView(R.id.map_bottom_sheet_layout) NestedScrollView bottomSheetLayout;
 
     @BindString(R.string.all_share_title) String shareTitle;
@@ -182,9 +185,9 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     private void initSharedPreferences() {
 
-        PreferencesHelper prefsHelperLatitude = new PreferencesHelper(activity,
+        prefsHelperLatitude = new PreferencesHelper(activity,
                 getString(R.string.prefs_latitude_key));
-        PreferencesHelper prefsHelperLongitude = new PreferencesHelper(activity,
+        prefsHelperLongitude = new PreferencesHelper(activity,
                 getString(R.string.prefs_longitude_key));
 
         latitude = prefsHelperLatitude.readFromPrefs(activity,
@@ -244,6 +247,10 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
     @OnClick(R.id.btn_bottom_sheet)
     void onBottomSheetClicked() {
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        prefsHelperLatitude.writeToPrefs(getString(R.string.prefs_latitude_key), latitude);
+        prefsHelperLatitude.writeToPrefs(getString(R.string.prefs_longitude_key), longitude);
+        
         if (listener != null) {
             listener.onLocationChanged(latitude, longitude, address);
         } else {
