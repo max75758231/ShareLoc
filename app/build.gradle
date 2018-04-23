@@ -28,14 +28,14 @@ android {
 }
 
 ext {
-    butterknifeVersion = "8.6.0"
-    constraintLayoutVersion = "1.0.2"
+    butterknifeVersion = "8.8.1"
+    constraintLayoutVersion = "1.1.0"
     daggerVersion = "2.13"
-    gmsVersion = "12.0.1"
+    gmsVersion = "15.0.0"
     moxyVersion = "1.5.3"
     rxJavaVersion = "2.1.1"
     rxPermissionVersion = "0.9.5@aar"
-    supportLibraryVersion = "27.1.0"
+    supportLibraryVersion = "27.1.1"
 }
 
 dependencies {
