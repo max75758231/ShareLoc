@@ -173,6 +173,33 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout_internet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="226dp"
+                android:layout_marginTop="@dimen/location_spacing_16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_message">
+
+                <TextView
+                    android:id="@+id/tv_location_internet"
+                    android:layout_width="@dimen/location_tv_width"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location_tv_internet"
+                    style="@style/BlackText"/>
+
+                <TextView
+                    android:id="@+id/tv_location_internet_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="LTE"
+                    android:layout_gravity="center_vertical"
+                    style="@style/BlackText"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/linearLayout_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,7 +208,7 @@
                 tools:layout_editor_absoluteY="226dp"
                 android:layout_marginTop="@dimen/location_spacing_16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_address">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_internet">
 
                 <TextView
                     android:id="@+id/tv_location_google"

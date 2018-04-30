@@ -7,6 +7,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -43,6 +45,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @BindView(R.id.tv_location_longitude_result) TextView textViewLongitude;
     @BindView(R.id.tv_location_address_result) TextView textViewAddress;
     @BindView(R.id.tv_location_message_result) TextView textViewMessage;
+    @BindView(R.id.tv_location_internet_result) TextView textViewInternet;
     @BindView(R.id.tv_location_google_link) TextView textViewGoogleLink;
     @BindView(R.id.tv_location_yandex_link) TextView textViewYandexLink;
 
@@ -117,6 +120,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     @SuppressLint("CheckResult")
     private void getLocation() {
 
+        getConnectionType();
         RxPermissions rxPermissions = new RxPermissions(activity);
         rxPermissions
                 .request(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -243,6 +247,21 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
             notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         } else {
             notificationManager = null;
+        }
+    }
+
+    private void getConnectionType() {
+        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        boolean isConnected = info != null && info.isConnectedOrConnecting();
+        if (isConnected) {
+            if (info.getType() == ConnectivityManager.TYPE_WIFI) {
+                textViewInternet.setText(getString(R.string.location_internet_wifi));
+            } else if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
+                textViewInternet.setText(info.getSubtypeName());
+            }
+        } else {
+            textViewInternet.setText(getString(R.string.location_no_internet));
         }
     }
 }

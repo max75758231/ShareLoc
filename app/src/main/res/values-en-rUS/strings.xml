@@ -29,4 +29,6 @@
     <string name="toolbar_settings_title">Settings</string>
     <string name="settings_category_general_title">General settings</string>
     <string name="settings_category_message_title">Message settings</string>
+    <string name="location_tv_internet">Internet connection type:</string>
+    <string name="location_no_internet">No connection</string>
 </resources>
