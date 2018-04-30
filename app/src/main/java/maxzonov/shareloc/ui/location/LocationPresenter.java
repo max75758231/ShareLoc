@@ -43,12 +43,9 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
         res = context.getResources();
         this.fusedLocationClient = fusedLocation;
 
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
         prefsHelperLatitude = new PreferencesHelper(context, res.getString(R.string.prefs_latitude_key));
         prefsHelperLongitude = new PreferencesHelper(context, res.getString(R.string.prefs_longitude_key));
 
-        showNotification();
         getLocation();
     }
 
@@ -80,13 +77,14 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
     @Override
     public void onGetAddressCompleted(String address) {
         getViewState().showInfo(latitude, longitude, address);
-        cancelNotification();
+        cancelNotification(notificationManager);
     }
 
     /**
      * Notification is displayed during the application is searching for satellites
      */
-    private void showNotification() {
+    void showNotification(NotificationManager notificationManager) {
+        this.notificationManager = notificationManager;
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, NOTIFICATION_FIND_LOCATION_CHANNEL)
                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -99,7 +97,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
                 notification);
     }
 
-    private void cancelNotification() {
+    void cancelNotification(NotificationManager notificationManager) {
         notificationManager.cancel(NOTIFICATION_FIND_LOCATION_ID);
     }
 }

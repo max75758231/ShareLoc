@@ -3,6 +3,7 @@ package maxzonov.shareloc.ui.location;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -57,6 +58,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     private View view;
 
     private Activity activity;
+
+    private NotificationManager notificationManager = null;
 
     @Override
     public void onAttach(Context context) {
@@ -120,6 +123,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
                 .subscribe(granted -> {
                    if (granted) {
                        locationPresenter.getLocationClicked(activity, fusedLocationClient);
+                       initNotificationManager();
+
+                       if (notificationManager != null) {
+                           locationPresenter.showNotification(notificationManager);
+                       }
+
                    } else {
                        Toast.makeText(view.getContext(), getString(R.string.location_permission_denied),
                                Toast.LENGTH_SHORT).show();
@@ -194,6 +203,8 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
         if (activity != null)
             activity = null;
+
+        locationPresenter.cancelNotification(notificationManager);
     }
 
     private void setupSharedPreferences() {
@@ -224,6 +235,14 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
             Intent i = new Intent(activity, StartActivity.class);
             startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
+
+    private void initNotificationManager() {
+        if (getContext() != null) {
+            notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        } else {
+            notificationManager = null;
         }
     }
 }
