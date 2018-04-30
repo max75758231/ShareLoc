@@ -79,9 +79,4 @@
     <string name="prefs_language_en_value" translatable="false">en</string>
     <string name="prefs_language_ru_value" translatable="false">ru</string>
 
-    <!-- Google Maps API key -->
-
-    <string name="manifest_google_geo_api_key" translatable="false">
-        AIzaSyAp8XRmCrRkjMadpEXljuYrIuBumyZKzyE
-    </string>
 </resources>
