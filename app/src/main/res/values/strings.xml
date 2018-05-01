@@ -42,6 +42,7 @@
 
     <string name="location_internet_wifi" translatable="false">Wi-Fi</string>
     <string name="location_no_internet">Соединение отсутствует</string>
+    <string name="location_internet_error">Ошибка опредления связи</string>
 
     <!-- Map screen -->
 

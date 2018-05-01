@@ -252,7 +252,12 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
 
     private void getConnectionType() {
         ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = cm.getActiveNetworkInfo();
+        NetworkInfo info = null;
+        if (cm != null) {
+            info = cm.getActiveNetworkInfo();
+        } else {
+            textViewInternet.setText(getString(R.string.location_internet_error));
+        }
         boolean isConnected = info != null && info.isConnectedOrConnecting();
         if (isConnected) {
             if (info.getType() == ConnectivityManager.TYPE_WIFI) {

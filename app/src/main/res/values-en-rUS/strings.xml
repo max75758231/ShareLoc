@@ -31,4 +31,5 @@
     <string name="settings_category_message_title">Message settings</string>
     <string name="location_tv_internet">Internet connection type:</string>
     <string name="location_no_internet">No connection</string>
+    <string name="location_internet_error">Internet determination error</string>
 </resources>
