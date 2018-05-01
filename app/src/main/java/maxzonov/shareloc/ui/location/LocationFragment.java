@@ -208,7 +208,9 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
         if (activity != null)
             activity = null;
 
-        locationPresenter.cancelNotification(notificationManager);
+        if (notificationManager != null) {
+            locationPresenter.cancelNotification(notificationManager);
+        }
     }
 
     private void setupSharedPreferences() {
