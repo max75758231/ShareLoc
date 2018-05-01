@@ -1,8 +1,11 @@
-package maxzonov.shareloc;
+package maxzonov.shareloc.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import maxzonov.shareloc.R;
+import maxzonov.shareloc.StartActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
