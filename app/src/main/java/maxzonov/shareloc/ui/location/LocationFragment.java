@@ -7,8 +7,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -35,6 +33,7 @@ import butterknife.Unbinder;
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.StartActivity;
 import maxzonov.shareloc.utils.LocaleManager;
+import maxzonov.shareloc.utils.NetworkManager;
 
 public class LocationFragment extends MvpAppCompatFragment implements LocationView,
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -253,22 +252,7 @@ public class LocationFragment extends MvpAppCompatFragment implements LocationVi
     }
 
     private void getConnectionType() {
-        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = null;
-        if (cm != null) {
-            info = cm.getActiveNetworkInfo();
-        } else {
-            textViewInternet.setText(getString(R.string.location_internet_error));
-        }
-        boolean isConnected = info != null && info.isConnectedOrConnecting();
-        if (isConnected) {
-            if (info.getType() == ConnectivityManager.TYPE_WIFI) {
-                textViewInternet.setText(getString(R.string.location_internet_wifi));
-            } else if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
-                textViewInternet.setText(info.getSubtypeName());
-            }
-        } else {
-            textViewInternet.setText(getString(R.string.location_no_internet));
-        }
+        NetworkManager networkManager = new NetworkManager();
+        textViewInternet.setText(networkManager.getNetworkInfo(activity));
     }
 }
