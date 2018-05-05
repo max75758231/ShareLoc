@@ -28,14 +28,14 @@
     <string name="location_get_button">Получить мою геолокацию</string>
 
     <string name="location_tv_coords">Координаты:</string>
-    <string name="location_tv_latitude">Широта:</string>
-    <string name="location_tv_longitude">Долгота:</string>
+    <string name="location_tv_latitude">Широта</string>
+    <string name="location_tv_longitude">Долгота</string>
     <string name="location_tv_send">Отправить:</string>
-    <string name="location_tv_address">Адрес:</string>
-    <string name="location_tv_message">Сообщение:</string>
-    <string name="location_tv_internet">Интернет-соединение:</string>
-    <string name="location_tv_google" translatable="false">Google Maps:</string>
-    <string name="location_tv_yandex">Яндекс.Карты:</string>
+    <string name="location_tv_address">Адрес</string>
+    <string name="location_tv_message">Сообщение</string>
+    <string name="location_tv_internet">Интернет</string>
+    <string name="location_tv_google" translatable="false">Google Maps</string>
+    <string name="location_tv_yandex">Яндекс.Карты</string>
 
     <string name="location_permission_denied">Требуется разрешение на получение местоположения</string>
     <string name="location_no_geo_received_message">Геолокация не определена</string>

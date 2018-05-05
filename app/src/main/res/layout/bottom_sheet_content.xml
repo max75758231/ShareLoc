@@ -30,6 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_share_black_24dp"/>
+        app:srcCompat="@drawable/ic_share_24dp"/>
 
 </LinearLayout>

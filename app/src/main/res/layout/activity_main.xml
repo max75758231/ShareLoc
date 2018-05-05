@@ -20,7 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
         app:menu="@menu/bottom_navigation"
+        app:itemTextColor="@color/bottom_navigation"
+        app:itemIconTint="@color/bottom_navigation"
         android:theme="@style/BottomNavCustomFont"/>
 
 </android.support.design.widget.CoordinatorLayout>
