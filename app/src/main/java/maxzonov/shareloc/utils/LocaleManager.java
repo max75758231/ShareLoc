@@ -37,7 +37,7 @@ public class LocaleManager {
         return updateResourcesLegacy(context, language);
     }
 
-    private static String getPersistedData(Context context, String defaultLanguage) {
+    public static String getPersistedData(Context context, String defaultLanguage) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
     }

@@ -33,5 +33,6 @@
     <string name="location_no_internet">No connection</string>
     <string name="location_internet_error">Internet determination error</string>
     <string name="settings_info_label">Information</string>
-    <string name="settings_license_label">License</string>
+    <string name="settings_license_label">Code license</string>
+    <string name="license_error">License showing error</string>
 </resources>
