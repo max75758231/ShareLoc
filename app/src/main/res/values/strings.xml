@@ -64,7 +64,7 @@
     <string name="settings_category_general_title">Общие настройки</string>
     <string name="settings_category_message_title">Настройки сообщения</string>
     <string name="settings_info_label">Информация</string>
-    <string name="settings_license_label">Лицензия кода</string>
+    <string name="settings_about">О приложении</string>
 
     <string name="prefs_language_en_label" translatable="false">English</string>
     <string name="prefs_language_ru_label" translatable="false">Русский</string>
@@ -88,5 +88,10 @@
 
     <!-- License screen -->
     <string name="license_error">Ошибка отображения лицензии</string>
+
+    <!-- About screen -->
+    <string name="about_app_descr">Приложение для определения информации о месте, в котором вы находитесь и его передачи</string>
+    <string name="about_github" translatable="false">GitHub</string>
+    <string name="about_license_label">Лицензия кода (MIT)</string>
 
 </resources>

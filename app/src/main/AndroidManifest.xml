@@ -36,10 +36,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/manifest_google_geo_api_key" />
 
-        <activity android:name=".ui.license.LicenseActivity">
+        <activity android:name=".ui.license.LicenseActivity"/>
+
+        <activity android:name=".ui.about.AboutActivity">
             <intent-filter>
-                <action android:name="ACTION_LICENSE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="ACTION_ABOUT_APP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

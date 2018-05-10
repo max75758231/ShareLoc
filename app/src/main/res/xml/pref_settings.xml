@@ -25,8 +25,8 @@
     <PreferenceCategory
         android:title="@string/settings_info_label">
         <PreferenceScreen
-            android:title="@string/settings_license_label">
-            <intent android:action="ACTION_LICENSE"/>
+            android:title="@string/settings_about">
+            <intent android:action="ACTION_ABOUT_APP"/>
         </PreferenceScreen>
     </PreferenceCategory>
 
