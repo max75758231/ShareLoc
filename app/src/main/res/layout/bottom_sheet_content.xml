@@ -15,7 +15,8 @@
         android:layout_marginLeft="@dimen/map_bottom_sheet_spacing_8dp"
         android:layout_marginStart="@dimen/map_bottom_sheet_spacing_8dp"
         android:layout_weight="10"
-        style="@style/BlackText"/>
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/montserrat_regular"/>
 
     <Button
         android:id="@+id/btn_bottom_sheet"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/bottom_sheet_yes_button"
         android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/colorPrimary"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
 
     <ImageView
@@ -30,6 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_share_24dp"/>
+        app:srcCompat="@drawable/ic_share_black_24dp"/>
 
 </LinearLayout>

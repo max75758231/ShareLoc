@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/location_tv_latitude"
-                        style="@style/BlackBoldText"/>
+                        style="@style/WhiteBoldText"/>
 
                     <TextView
                         android:id="@+id/tv_location_latitude_result"
@@ -47,7 +47,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="-"
                         tools:text="53.3333333"
-                        style="@style/BlackText"/>
+                        style="@style/WhiteText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/location_tv_internet"
-                        style="@style/BlackBoldText"/>
+                        style="@style/WhiteBoldText"/>
 
                     <TextView
                         android:id="@+id/tv_location_internet_result"
@@ -74,7 +74,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="-"
                         tools:text="LTE"
-                        style="@style/BlackText"/>
+                        style="@style/WhiteText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/location_tv_longitude"
-                        style="@style/BlackBoldText"/>
+                        style="@style/WhiteBoldText"/>
 
                     <TextView
                         android:id="@+id/tv_location_longitude_result"
@@ -99,7 +99,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="-"
                         tools:text="53.3333333"
-                        style="@style/BlackText"/>
+                        style="@style/WhiteText"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/location_tv_address"
-                    style="@style/BlackBoldText"/>
+                    style="@style/WhiteBoldText"/>
 
                 <TextView
                     android:id="@+id/tv_location_address_result"
@@ -126,7 +126,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="-"
                     tools:text="г.Киров, Театральная площадь"
-                    style="@style/BlackText"/>
+                    style="@style/WhiteText"/>
             </LinearLayout>
 
             <Button
@@ -155,14 +155,14 @@
                     android:layout_width="@dimen/location_tv_width"
                     android:layout_height="wrap_content"
                     android:text="@string/location_tv_message"
-                    style="@style/BlackBoldText"/>
+                    style="@style/WhiteBoldText"/>
 
                 <TextView
                     android:id="@+id/tv_location_message_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Тестовое длинное"
-                    style="@style/BlackText"/>
+                    style="@style/WhiteText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -177,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/location_tv_google"
-                    style="@style/BlackBoldText"/>
+                    style="@style/WhiteBoldText"/>
 
                 <TextView
                     android:id="@+id/tv_location_google_link"
@@ -186,7 +186,7 @@
                     android:autoLink="all"
                     android:text="-"
                     tools:text="@string/all_google_maps_link"
-                    style="@style/BlackText"/>
+                    style="@style/WhiteText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -201,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/location_tv_yandex"
-                    style="@style/BlackBoldText"/>
+                    style="@style/WhiteBoldText"/>
 
                 <TextView
                     android:id="@+id/tv_location_yandex_link"
@@ -210,7 +210,7 @@
                     android:autoLink="all"
                     android:text="-"
                     tools:text="@string/all_yandex_maps_link"
-                    style="@style/BlackText"/>
+                    style="@style/WhiteText"/>
             </LinearLayout>
 
             <ImageView
