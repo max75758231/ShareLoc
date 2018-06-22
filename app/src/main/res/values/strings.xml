@@ -37,6 +37,7 @@
     <string name="location_tv_internet">Интернет</string>
     <string name="location_tv_google" translatable="false">Google Maps</string>
     <string name="location_tv_yandex">Яндекс.Карты</string>
+    <string name="location_btn_search">Поиск</string>
 
     <string name="location_permission_denied">Требуется разрешение на получение местоположения</string>
     <string name="location_no_geo_received_message">Геолокация не определена</string>

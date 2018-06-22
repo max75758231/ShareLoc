@@ -37,4 +37,5 @@
     <string name="license_error">License showing error</string>
     <string name="settings_about">About app</string>
     <string name="about_app_descr">An app to searching your geolocation and to share it</string>
+    <string name="location_btn_search">Search</string>
 </resources>

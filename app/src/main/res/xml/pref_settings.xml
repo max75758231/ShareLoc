@@ -19,6 +19,7 @@
         <EditTextPreference
             android:defaultValue="@string/prefs_message_default"
             android:title="@string/settings_tv_message"
+            android:maxLength="35"
             android:key="@string/settings_message_key"/>
     </PreferenceCategory>
 
