@@ -15,8 +15,10 @@ import maxzonov.shareloc.utils.LocaleManager;
 
 public class LicenseActivity extends AppCompatActivity {
 
-    @BindView(R.id.license_tv)
-    TextView tvLicense;
+    private static final String LICENSE_FILE_EN = "license_en.txt";
+    private static final String LICENSE_FILE_RU = "license_ru.txt";
+
+    @BindView(R.id.license_tv) TextView tvLicense;
 
     private StringBuilder licenseText = new StringBuilder();
     private BufferedReader reader = null;
@@ -51,11 +53,11 @@ public class LicenseActivity extends AppCompatActivity {
     }
 
     private void chooseFileByLanguage() throws IOException {
-        String currentLanguage = LocaleManager.getPersistedData(this, "ru");
+        String currentLanguage = LocaleManager.getPersistedData(this, getString(R.string.prefs_language_ru_value));
         if (currentLanguage.equals(getString(R.string.prefs_language_ru_value))) {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open("license_ru.txt")));
+            reader = new BufferedReader(new InputStreamReader(getAssets().open(LICENSE_FILE_RU)));
         } else {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open("license_en.txt")));
+            reader = new BufferedReader(new InputStreamReader(getAssets().open(LICENSE_FILE_EN)));
         }
     }
 }

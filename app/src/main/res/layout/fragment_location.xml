@@ -131,8 +131,8 @@
 
             <Button
                 android:id="@+id/btn_location_getLocation"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="@dimen/location_btn_size_130dp"
+                android:layout_height="@dimen/location_btn_size_130dp"
                 android:layout_marginTop="@dimen/location_btn_spacing_16dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/btn_get_location_circle"

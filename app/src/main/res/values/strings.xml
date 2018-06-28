@@ -95,5 +95,6 @@
     <string name="about_app_descr">Приложение для определения информации о месте, в котором вы находитесь и его передачи</string>
     <string name="about_github" translatable="false">GitHub</string>
     <string name="about_license_label">Лицензия кода (MIT)</string>
+    <string name="about_github_link" translatable="false">https://github.com/max75758231/ShareLoc</string>
 
 </resources>

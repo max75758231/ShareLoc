@@ -15,7 +15,7 @@ import maxzonov.shareloc.R;
 
 public class LocaleManager {
 
-    private static final String SELECTED_LANGUAGE = "language";
+    private static final String PREF_LANGUAGE_KEY = "language";
 
     public static Context onAttach(Context context) {
         String lang = getPersistedData(context, Locale.getDefault().getLanguage());
@@ -39,7 +39,7 @@ public class LocaleManager {
 
     public static String getPersistedData(Context context, String defaultLanguage) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
+        return preferences.getString(PREF_LANGUAGE_KEY, defaultLanguage);
     }
 
     /**
@@ -51,7 +51,7 @@ public class LocaleManager {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
-        editor.putString(SELECTED_LANGUAGE, language);
+        editor.putString(PREF_LANGUAGE_KEY, language);
         editor.commit();
     }
 

@@ -16,6 +16,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
         ButterKnife.bind(this);
     }
 
@@ -26,7 +27,7 @@ public class AboutActivity extends AppCompatActivity {
 
     @OnClick(R.id.about_github_layout)
     void onGithubClick() {
-        Uri uri = Uri.parse("https://github.com/max75758231/ShareLoc");
+        Uri uri = Uri.parse(getString(R.string.about_github_link));
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }

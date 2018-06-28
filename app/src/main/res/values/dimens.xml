@@ -16,6 +16,7 @@
     <dimen name="location_btn_get_corners_radius">10dp</dimen>
     <dimen name="location_btn_get_height">40dp</dimen>
     <dimen name="location_btn_spacing_16dp">16dp</dimen>
+    <dimen name="location_btn_size_130dp">130dp</dimen>
 
     <!-- Map screen -->
 

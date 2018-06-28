@@ -10,6 +10,10 @@ import maxzonov.shareloc.R;
 
 public class NetworkManager {
 
+    private static final String NETWORK_2G = "2G";
+    private static final String NETWORK_3G = "3G";
+    private static final String NETWORK_4G = "4G";
+
     public String getNetworkInfo(Activity activity) {
         ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = null;
@@ -40,7 +44,7 @@ public class NetworkManager {
             case TelephonyManager.NETWORK_TYPE_1xRTT:
             case TelephonyManager.NETWORK_TYPE_IDEN:
             case 16: // GSM
-                networkType = generateNetworkTypeString("2G", typeName);
+                networkType = generateNetworkTypeString(NETWORK_2G, typeName);
                 break;
             case TelephonyManager.NETWORK_TYPE_UMTS:
             case TelephonyManager.NETWORK_TYPE_EVDO_0:
@@ -52,18 +56,18 @@ public class NetworkManager {
             case TelephonyManager.NETWORK_TYPE_EHRPD:
             case TelephonyManager.NETWORK_TYPE_HSPAP:
             case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
-                networkType = generateNetworkTypeString("3G", typeName);
+                networkType = generateNetworkTypeString(NETWORK_3G, typeName);
                 break;
             case TelephonyManager.NETWORK_TYPE_LTE:
             case TelephonyManager.NETWORK_TYPE_IWLAN:
-            case 19: // LTE CA
-                networkType = generateNetworkTypeString("4G", typeName);
+            case 19: // LTE Carrier Aggregation
+                networkType = generateNetworkTypeString(NETWORK_4G, typeName);
                 break;
         }
         return networkType;
     }
 
-    private String generateNetworkTypeString (String type, String typeName) {
+    private String generateNetworkTypeString(String type, String typeName) {
         return type + " (" + typeName + ")";
     }
 }
