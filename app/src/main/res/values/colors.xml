@@ -12,6 +12,6 @@
 
     <color name="colorBottomNavigationDefault">#FAFAFA</color>
 
-    <color name="btnGetLocation_colorLightGray">#E3E3E3</color>
-    <color name="btnGetLocationRipple_colorGray">#A1A1A1</color>
+    <color name="colorBtnGetLocationLightGray">#E3E3E3</color>
+    <color name="colorBtnGetLocationRippleGray">#A1A1A1</color>
 </resources>
