@@ -135,7 +135,7 @@
                 android:layout_height="@dimen/location_btn_size_130dp"
                 android:layout_marginTop="@dimen/location_btn_spacing_16dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/btn_get_location_circle"
+                android:background="@drawable/btn_search_background"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Поиск"
                 android:textStyle="bold"
