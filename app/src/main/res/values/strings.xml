@@ -54,7 +54,7 @@
 
     <string name="bottom_sheet_i_am_here">Я нахожусь здесь</string>
     <string name="bottom_sheet_i_am_here_send">Я нахожусь здесь:</string>
-    <string name="bottom_sheet_yes_button">Да</string>
+    <string name="bottom_sheet_change_button">Изменить</string>
 
     <string name="bottom_sheet_listener_error">Невозможно перейти на экран информации</string>
 

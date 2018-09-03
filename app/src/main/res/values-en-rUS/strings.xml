@@ -7,7 +7,7 @@
     <string name="bottom_sheet_i_am_here">I\'m here</string>
     <string name="bottom_sheet_i_am_here_send">Look where I am</string>
     <string name="bottom_sheet_listener_error">Impossible to go to info screen</string>
-    <string name="bottom_sheet_yes_button">Yes</string>
+    <string name="bottom_sheet_change_button">Change</string>
     <string name="location_no_geo_received_message">Geolocation not found</string>
     <string name="location_get_button">Get my location</string>
     <string name="location_permission_denied">You have to give the GPS permission</string>

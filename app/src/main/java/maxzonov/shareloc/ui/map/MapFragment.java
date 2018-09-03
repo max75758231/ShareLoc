@@ -259,19 +259,6 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         }
     }
 
-    @OnClick(R.id.btn_bottom_sheet_share)
-    void onBottomSheetShareClicked() {
-        String sendInfo = getString(R.string.bottom_sheet_i_am_here_send) + "\n"
-                + stringGoogle + " " + getString(R.string.all_google_maps_link, latitude, longitude) + "\n"
-                + stringYandex + " " + getString(R.string.all_yandex_maps_link, latitude, longitude);
-
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, sendInfo);
-        startActivity(Intent.createChooser(intent, shareTitle));
-    }
-
     @Override
     public void showAddressInMarker(String address) {
         this.address = address;

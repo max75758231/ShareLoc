@@ -5,7 +5,9 @@
             <solid android:color="@color/colorBottomNavigationDefault"/>
             <corners
                 android:topLeftRadius="@dimen/map_bottom_sheet_radius"
-                android:topRightRadius="@dimen/map_bottom_sheet_radius"/>
+                android:topRightRadius="@dimen/map_bottom_sheet_radius"
+                android:bottomLeftRadius="@dimen/map_bottom_sheet_radius"
+                android:bottomRightRadius="@dimen/map_bottom_sheet_radius"/>
         </shape>
     </item>
 </selector>
