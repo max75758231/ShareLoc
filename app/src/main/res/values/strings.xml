@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name" translatable="false">ShareLoc</string>
-    <string name="author" translatable="false">©2018 Max Zonov</string>
+    <string name="app_developer" translatable="false">©2018 Max Zonov</string>
 
     <!-- General strings -->
 
-    <string name="bn_map">Карта</string>
-    <string name="bn_location">Инф. о геолокации</string>
+    <string name="bottom_nav_map_title">Карта</string>
+    <string name="bottom_nav_location_title">Инф. о геолокации</string>
 
     <string name="notification_gps_searching">Поиск спутников GPS</string>
 
@@ -26,8 +26,6 @@
 
     <!-- Location screen -->
 
-    <string name="location_get_button">Получить мою геолокацию</string>
-
     <string name="location_tv_coords">Координаты:</string>
     <string name="location_tv_latitude">Широта</string>
     <string name="location_tv_longitude">Долгота</string>
@@ -43,19 +41,15 @@
     <string name="location_no_geo_received_message">Геолокация не определена</string>
 
     <string name="location_internet_wifi" translatable="false">Wi-Fi</string>
-    <string name="location_no_internet">Соединение отсутствует</string>
-    <string name="location_internet_error">Ошибка опредления связи</string>
+    <string name="location_internet_error">Ошибка определения связи</string>
 
     <!-- Map screen -->
 
-    <string name="menu_map_satellite">Спутник</string>
-    <string name="menu_map_hybrid">Гибрид</string>
-    <string name="menu_map_map">Карта</string>
+    <string name="map_menu_satellite">Спутник</string>
+    <string name="map_menu_hybrid">Гибрид</string>
+    <string name="map_menu_schema">Схема</string>
 
-    <string name="bottom_sheet_i_am_here">Я нахожусь здесь</string>
-    <string name="bottom_sheet_i_am_here_send">Я нахожусь здесь:</string>
     <string name="bottom_sheet_change_button">Изменить</string>
-
     <string name="bottom_sheet_listener_error">Невозможно перейти на экран информации</string>
 
     <!-- Settings -->

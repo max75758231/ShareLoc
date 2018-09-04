@@ -4,11 +4,11 @@
     <item
         android:id="@+id/bottom_navigation_location"
         android:icon="@drawable/ic_location_black_24dp"
-        android:title="@string/bn_location" />
+        android:title="@string/bottom_nav_location_title" />
 
     <item
         android:id="@+id/bottom_navigation_map"
         android:icon="@drawable/ic_map_black_24dp"
-        android:title="@string/bn_map" />
+        android:title="@string/bottom_nav_map_title" />
 
 </menu>

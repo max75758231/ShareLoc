@@ -30,7 +30,7 @@ public class NetworkManager {
                 return getConnectivityType(info.getSubtype(), info.getSubtypeName());
             }
         } else {
-            return activity.getString(R.string.location_no_internet);
+            return activity.getString(R.string.location_internet_error);
         }
         return "";
     }

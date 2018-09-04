@@ -2,14 +2,11 @@
 <resources>
     <string name="all_address_error">Address not found</string>
     <string name="all_exit_button">Click the back button again to exit</string>
-    <string name="bn_location">Info</string>
-    <string name="bn_map">Map</string>
-    <string name="bottom_sheet_i_am_here">I\'m here</string>
-    <string name="bottom_sheet_i_am_here_send">Look where I am</string>
+    <string name="bottom_nav_location_title">Info</string>
+    <string name="bottom_nav_map_title">Map</string>
     <string name="bottom_sheet_listener_error">Impossible to go to info screen</string>
     <string name="bottom_sheet_change_button">Change</string>
     <string name="location_no_geo_received_message">Geolocation not found</string>
-    <string name="location_get_button">Get my location</string>
     <string name="location_permission_denied">You have to give the GPS permission</string>
     <string name="location_tv_address">Address:</string>
     <string name="location_tv_coords">Coords:</string>
@@ -19,9 +16,9 @@
     <string name="location_tv_send">Send:</string>
     <string name="all_share_title">Share via</string>
     <string name="location_tv_yandex">Yandex.Maps:</string>
-    <string name="menu_map_hybrid">Hybrid</string>
-    <string name="menu_map_map">Map</string>
-    <string name="menu_map_satellite">Satellite</string>
+    <string name="map_menu_hybrid">Hybrid</string>
+    <string name="map_menu_schema">Map</string>
+    <string name="map_menu_satellite">Satellite</string>
     <string name="notification_gps_searching">Search for gps satellites</string>
     <string name="prefs_message_default">I\'m here</string>
     <string name="settings_tv_message">Message text</string>
@@ -30,8 +27,7 @@
     <string name="settings_category_general_title">General settings</string>
     <string name="settings_category_message_title">Message settings</string>
     <string name="location_tv_internet">Internet</string>
-    <string name="location_no_internet">No connection</string>
-    <string name="location_internet_error">Internet determination error</string>
+    <string name="location_internet_error">No connection</string>
     <string name="settings_info_label">Information</string>
     <string name="about_license_label">Code license (MIT)</string>
     <string name="license_error">License showing error</string>
