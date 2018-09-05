@@ -10,7 +10,8 @@
     <color name="colorLightGrey">#E2F1F8</color>
     <color name="colorGrey">#B0BEC5</color>
 
-    <color name="colorBottomNavigationDefault">#FAFAFA</color>
+    <color name="colorBottomNavigationDefault">#BBFAFAFA</color>
+    <color name="colorBottomNavigationPressed">#FAFAFA</color>
 
     <color name="colorBtnGetLocationLightGray">#E3E3E3</color>
     <color name="colorBtnGetLocationRippleGray">#A1A1A1</color>

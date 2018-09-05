@@ -28,7 +28,7 @@
             android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
             android:fontFamily="@font/montserrat_medium"
-            android:background="@drawable/bottom_sheet_rounded"/>
+            android:background="@drawable/bottom_sheet_map_bachground"/>
 
     </android.support.v4.widget.NestedScrollView>
 
