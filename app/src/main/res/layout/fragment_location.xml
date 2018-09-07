@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingRight="@dimen/activity_horizontal_spacing_16dp"
     android:paddingLeft="@dimen/activity_horizontal_spacing_16dp"
-    android:paddingTop="@dimen/activity_vertical_spacing_24dp"
+    android:paddingTop="@dimen/location_spacing_8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_spacing_24dp"
+    android:paddingBottom="@dimen/location_spacing_8dp"
     android:background="@color/colorPrimary">
 
     <ScrollView
