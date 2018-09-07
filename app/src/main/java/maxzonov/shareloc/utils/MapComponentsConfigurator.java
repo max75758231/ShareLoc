@@ -1,8 +1,5 @@
 package maxzonov.shareloc.utils;
 
-import android.app.Activity;
-import android.content.Context;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
