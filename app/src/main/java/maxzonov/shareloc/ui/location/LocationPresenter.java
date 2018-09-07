@@ -14,11 +14,11 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 
 import maxzonov.shareloc.R;
 import maxzonov.shareloc.preferences.PreferencesHelper;
-import maxzonov.shareloc.utils.GetAddressClass;
-import maxzonov.shareloc.utils.OnGetAddressCompleted;
+import maxzonov.shareloc.utils.AddressReceiver;
+import maxzonov.shareloc.utils.OnAddressReceivedListener;
 
 @InjectViewState
-public class LocationPresenter extends MvpPresenter<LocationView> implements OnGetAddressCompleted {
+public class LocationPresenter extends MvpPresenter<LocationView> implements OnAddressReceivedListener {
 
     private String latitude, longitude;
 
@@ -64,7 +64,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
                 prefsHelperLatitude.writeToPrefs(res.getString(R.string.prefs_latitude_key), latitude);
                 prefsHelperLongitude.writeToPrefs(res.getString(R.string.prefs_longitude_key), longitude);
 
-                new GetAddressClass(context, this).execute(lastLocation);
+                new AddressReceiver(context, this).execute(lastLocation);
             } else {
                 getViewState().onLocationResponseError();
             }
@@ -75,7 +75,7 @@ public class LocationPresenter extends MvpPresenter<LocationView> implements OnG
      * It's a response from the get address callback
      */
     @Override
-    public void onGetAddressCompleted(String address) {
+    public void onAddressReceived(String address) {
         getViewState().showInfo(latitude, longitude, address);
         cancelNotification(notificationManager);
     }
