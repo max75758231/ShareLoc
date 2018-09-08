@@ -23,6 +23,7 @@ import maxzonov.shareloc.navigation.AppNavigator;
 import maxzonov.shareloc.ui.map.OnLocationChangedListener;
 import maxzonov.shareloc.ui.settings.SettingsActivity;
 import maxzonov.shareloc.utils.LocaleManager;
+import maxzonov.shareloc.utils.MyLocation;
 
 public class StartActivity extends AppCompatActivity implements OnLocationChangedListener {
 
@@ -32,6 +33,8 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
     @BindView(R.id.bottom_navigation) BottomNavigationView navigationView;
 
     private AppNavigator navigator;
+
+    private Bundle args;
 
     /**
      * isMapFragmentVisible - boolean variable to handle lifecycle of activity
@@ -54,11 +57,8 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        navigator = new AppNavigator(getSupportFragmentManager());
-
-        ScreensComponent screensComponent = App.getAppComponent(this)
-                .screensComponent(new NavigatorModule(navigator));
-        screensComponent.inject(this);
+        initVariables();
+        injectDaggerDependencies();
 
         if (savedInstanceState != null) {
             isMapFragmentVisible = savedInstanceState.getBoolean("isMainVisible");
@@ -67,6 +67,17 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
         }
 
         navigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+    }
+
+    private void initVariables() {
+        navigator = new AppNavigator(getSupportFragmentManager());
+        args = new Bundle();
+    }
+
+    private void injectDaggerDependencies() {
+        ScreensComponent screensComponent = App.getAppComponent(this)
+                .screensComponent(new NavigatorModule(navigator));
+        screensComponent.inject(this);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
@@ -144,12 +155,23 @@ public class StartActivity extends AppCompatActivity implements OnLocationChange
      */
     @Override
     public void onLocationChanged(final String latitude, final String longitude, final String address) {
-        Bundle args = new Bundle();
 
-        args.putString(getString(R.string.all_latitude_intent_key), latitude);
-        args.putString(getString(R.string.all_longitude_intent_key), longitude);
-        args.putString(getString(R.string.all_address_intent_key), address);
+        MyLocation myLocation = new MyLocation(latitude, longitude, address);
+        saveNewLocationAndNavigateToLocationScreen(myLocation);
+    }
 
+    private void saveNewLocationAndNavigateToLocationScreen(MyLocation location) {
+        saveNewLocation(location);
+        navigateToLocationScreen();
+    }
+
+    private void saveNewLocation(MyLocation location) {
+        args.putString(getString(R.string.all_latitude_intent_key), location.getLatitude());
+        args.putString(getString(R.string.all_longitude_intent_key), location.getLongitude());
+        args.putString(getString(R.string.all_address_intent_key), location.getAddress());
+    }
+
+    private void navigateToLocationScreen() {
         fragmentLocation.setArguments(args);
         navigator.navigateToFragment(fragmentLocation);
         navigationView.setSelectedItemId(R.id.bottom_navigation_location);
