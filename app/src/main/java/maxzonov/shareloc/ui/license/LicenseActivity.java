@@ -22,7 +22,7 @@ public class LicenseActivity extends AppCompatActivity {
 
     private StringBuilder licenseText = new StringBuilder();
     private BufferedReader reader = null;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
