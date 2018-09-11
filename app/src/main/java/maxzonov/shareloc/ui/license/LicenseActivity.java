@@ -22,33 +22,25 @@ public class LicenseActivity extends AppCompatActivity {
 
     private StringBuilder licenseText = new StringBuilder();
     private BufferedReader reader = null;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_license);
         ButterKnife.bind(this);
 
+        chooseLicenseFileAndConvertToString();
+        tvLicense.setText(licenseText);
+    }
+
+    private void chooseLicenseFileAndConvertToString() {
         try {
             chooseFileByLanguage();
-
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                licenseText.append(mLine);
-                licenseText.append('\n');
-            }
+            convertFileToString();
         } catch (IOException e) {
             tvLicense.setText(getString(R.string.license_error));
-            e.printStackTrace();
         } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            tvLicense.setText(licenseText);
+            closeReader();
         }
     }
 
@@ -58,6 +50,24 @@ public class LicenseActivity extends AppCompatActivity {
             reader = new BufferedReader(new InputStreamReader(getAssets().open(LICENSE_FILE_RU)));
         } else {
             reader = new BufferedReader(new InputStreamReader(getAssets().open(LICENSE_FILE_EN)));
+        }
+    }
+
+    private void convertFileToString() throws IOException {
+        String mLine;
+        while ((mLine = reader.readLine()) != null) {
+            licenseText.append(mLine);
+            licenseText.append('\n');
+        }
+    }
+
+    private void closeReader() {
+        if (reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
