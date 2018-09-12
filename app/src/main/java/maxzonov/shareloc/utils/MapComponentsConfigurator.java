@@ -14,8 +14,6 @@ public class MapComponentsConfigurator {
     public MapComponentsConfigurator(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-
-
     }
 
     public CameraPosition buildCameraPosition() {
@@ -43,8 +41,6 @@ public class MapComponentsConfigurator {
 
         return googleMap;
     }
-
-
 
     private void buildDefaultCameraPosition() {
         cameraPosition = CameraPosition.builder()

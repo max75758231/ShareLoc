@@ -22,8 +22,8 @@ public class NetworkManager {
         } else {
             return activity.getString(R.string.location_internet_error);
         }
-        boolean isConnected = info != null && info.isConnectedOrConnecting();
-        if (isConnected) {
+
+        if (isNetworkConnected(info)) {
             if (info.getType() == ConnectivityManager.TYPE_WIFI) {
                 return activity.getString(R.string.location_internet_wifi);
             } else if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
@@ -33,6 +33,10 @@ public class NetworkManager {
             return activity.getString(R.string.location_internet_error);
         }
         return "";
+    }
+
+    private boolean isNetworkConnected(NetworkInfo info) {
+        return info != null && info.isConnectedOrConnecting();
     }
 
     private String getConnectivityType(int type, String typeName) {
