@@ -61,6 +61,6 @@ public class MapComponentsConfigurator {
     }
 
     private boolean areCoordsEmpty() {
-        return latitude.equals("0.0") && longitude.equals("0.0");
+        return (latitude == 0.0d) && (longitude == 0.0d);
     }
 }
